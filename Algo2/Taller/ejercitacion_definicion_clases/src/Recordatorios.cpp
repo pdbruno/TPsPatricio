@@ -65,13 +65,7 @@ bool Fecha::operator==(Fecha o) {
     return igual_dia and igual_mes;
 }
 bool Fecha::operator<(Fecha f) {
-    if (this->mes() < f.mes()) {
-        return false;
-    }
-    if (this->mes() == f.mes() && this->dia() <= f.dia()) {
-        return false;
-    }
-    return true;
+    return (this->mes() < f.mes()) || (this->mes() == f.mes() && this->dia() < f.dia());
 }
 
 #endif
@@ -127,13 +121,7 @@ ostream &operator<<(ostream &os, Horario h) {
 }
 
 bool Horario::operator<(Horario h) {
-    if (this->hora() > h.hora()) {
-        return false;
-    }
-    if (this->hora() == h.hora() && this->min() >= h.min()) {
-        return false;
-    }
-    return true;
+    return (this->hora() < h.hora()) || (this->hora() == h.hora() && this->min() < h.min());
 }
 
 // Ejercicio 13
@@ -160,13 +148,7 @@ private:
 Recordatorio::Recordatorio(Fecha f, Horario h, string msg) : fecha_(f), horario_(h), mensaje_(msg) {}
 
 bool Recordatorio::operator<(Recordatorio r) {
-    if (!(this->fecha() < r.fecha()) && !(this->fecha() == r.fecha())) {
-        return false;
-    }
-    if (this->fecha() == r.fecha() && !(this->horario() < r.horario())) {
-        return false;
-    }
-    return true;
+    return (this->fecha() < r.fecha()) || (this->fecha() == r.fecha() && this->horario() < r.horario());
 }
 
 Fecha Recordatorio::fecha() {
@@ -203,7 +185,7 @@ private:
 Agenda::Agenda(Fecha fecha_inicial): hoy_(fecha_inicial), recs_() {}
 
 Fecha Agenda::hoy() {
-    return  this->hoy_;
+    return this->hoy_;
 }
 void Agenda::agregar_recordatorio(Recordatorio rec) {
     this->recs_.push_back(rec);
@@ -219,13 +201,12 @@ list<Recordatorio> Agenda::recordatorios_de_hoy() {
             res.push_back(r);
         }
     }
+    res.sort();
     return res;
 }
 ostream &operator<<(ostream &os, Agenda a) {
     os << a.hoy() << endl << "=====" << endl;
-    list<Recordatorio> copy = a.recordatorios_de_hoy();
-    copy.sort();
-    for (Recordatorio rec : copy) {
+    for (Recordatorio rec : a.recordatorios_de_hoy()) {
         os << rec << endl;
     }
     return os;
