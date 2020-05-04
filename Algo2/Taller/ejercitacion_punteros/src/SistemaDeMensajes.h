@@ -2,14 +2,13 @@
 #define SISTEMADEMENSAJES_H
 
 #include "ConexionJugador.h"
-#include "Proxy.h"
 #include <string>
 
 
-#if EJ == 4 || EJ == 5
-#include "Proxy.h"
-#elif EJ == 6
+#if EJ >= 6
 #include "Proxy2.h"
+#else
+#include "Proxy.h"
 #endif
 
 using namespace std;

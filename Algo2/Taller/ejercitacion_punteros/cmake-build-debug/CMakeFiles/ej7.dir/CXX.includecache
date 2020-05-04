@@ -16,6 +16,10 @@ Internet.h
 string
 -
 
+/home/pato/TPsPatricio/Algo2/Taller/ejercitacion_punteros/src/Internet.cpp
+Internet.h
+/home/pato/TPsPatricio/Algo2/Taller/ejercitacion_punteros/src/Internet.h
+
 /home/pato/TPsPatricio/Algo2/Taller/ejercitacion_punteros/src/Internet.h
 list
 -
@@ -23,10 +27,6 @@ utility
 -
 string
 -
-
-/home/pato/TPsPatricio/Algo2/Taller/ejercitacion_punteros/src/Proxy.cpp
-Proxy.h
-/home/pato/TPsPatricio/Algo2/Taller/ejercitacion_punteros/src/Proxy.h
 
 /home/pato/TPsPatricio/Algo2/Taller/ejercitacion_punteros/src/Proxy.h
 ConexionJugador.h
@@ -53,14 +53,12 @@ Proxy.h
 /home/pato/TPsPatricio/Algo2/Taller/ejercitacion_punteros/src/SistemaDeMensajes.h
 ConexionJugador.h
 /home/pato/TPsPatricio/Algo2/Taller/ejercitacion_punteros/src/ConexionJugador.h
-Proxy.h
-/home/pato/TPsPatricio/Algo2/Taller/ejercitacion_punteros/src/Proxy.h
 string
 -
-Proxy.h
-/home/pato/TPsPatricio/Algo2/Taller/ejercitacion_punteros/src/Proxy.h
 Proxy2.h
 /home/pato/TPsPatricio/Algo2/Taller/ejercitacion_punteros/src/Proxy2.h
+Proxy.h
+/home/pato/TPsPatricio/Algo2/Taller/ejercitacion_punteros/src/Proxy.h
 
 /home/pato/TPsPatricio/Algo2/Taller/ejercitacion_punteros/tests/gtest-1.8.1/gtest.h
 limits
@@ -214,7 +212,7 @@ iosfwd
 vector
 -
 
-/home/pato/TPsPatricio/Algo2/Taller/ejercitacion_punteros/tests/sdm_tests.cpp
+/home/pato/TPsPatricio/Algo2/Taller/ejercitacion_punteros/tests/sdm_tests_bonus.cpp
 gtest-1.8.1/gtest.h
 /home/pato/TPsPatricio/Algo2/Taller/ejercitacion_punteros/tests/gtest-1.8.1/gtest.h
 ../src/SistemaDeMensajes.h

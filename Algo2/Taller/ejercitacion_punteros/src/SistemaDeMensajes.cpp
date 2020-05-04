@@ -1,7 +1,12 @@
 #include "SistemaDeMensajes.h"
 #include "ConexionJugador.h"
+#if EJ >= 6
+#include "Proxy2.h"
+#else
+#include "Proxy.h"
+#endif
 
-SistemaDeMensajes::SistemaDeMensajes(): _conns() {}
+SistemaDeMensajes::SistemaDeMensajes(): _conns(), _proxies() {}
 
 void SistemaDeMensajes::registrarJugador(int id, string ip) {
     this->_conns[id] = new ConexionJugador(ip);
@@ -22,13 +27,14 @@ string SistemaDeMensajes::ipJugador(int id) const {
 void SistemaDeMensajes::desregistrarJugador(int id) {
     this->_conns[id] = nullptr;
 }
-
+#if EJ < 4
+Proxy::Proxy(ConexionJugador* conn) : _conn(conn) {}
+#endif
 Proxy* SistemaDeMensajes::obtenerProxy(int id) {
-    if(this->_proxies[id] == nullptr){
-            this->_proxies[id] = new Proxy(this->_conns[id]);
-
+    if(_proxies[id] == nullptr){
+        _proxies[id] = new Proxy(&_conns[id]);
     }
-        return this->_proxies[id];
+        return _proxies[id];
 }
 
 SistemaDeMensajes::~SistemaDeMensajes(){
