@@ -9,6 +9,9 @@
 SistemaDeMensajes::SistemaDeMensajes(): _conns(), _proxies() {}
 
 void SistemaDeMensajes::registrarJugador(int id, string ip) {
+    if(this->_conns[id] != nullptr){
+        delete this->_conns[id];
+    }
     this->_conns[id] = new ConexionJugador(ip);
 }
 
@@ -25,7 +28,10 @@ string SistemaDeMensajes::ipJugador(int id) const {
 }
 
 void SistemaDeMensajes::desregistrarJugador(int id) {
-    this->_conns[id] = nullptr;
+    if(this->_conns[id] != nullptr){
+        delete this->_conns[id];
+        this->_conns[id] = nullptr;
+    }
 }
 #if EJ < 4
 Proxy::Proxy(ConexionJugador* conn) : _conn(conn) {}
