@@ -9,6 +9,8 @@
 /home/pato/TPsPatricio/Algo2/Taller/ejercitacion_definicion_clases/src/Recordatorios.cpp
 iostream
 -
+list
+-
 
 /home/pato/TPsPatricio/Algo2/Taller/ejercitacion_definicion_clases/tests/gtest-1.8.1/gtest.h
 limits
