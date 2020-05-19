@@ -1,26 +1,21 @@
 #include "Lista.h"
 
-template<class T>
-Lista<T>::Nodo::Nodo(const T &elem): data(elem), next(nullptr), prev(nullptr) {}
+Lista::Nodo::Nodo(const int &elem): data(elem), next(nullptr), prev(nullptr) {}
 
-template<class T>
-Lista<T>::Lista(): head_(nullptr), tail_(nullptr), longitud_(0) {
+Lista::Lista(): head_(nullptr), tail_(nullptr), longitud_(0) {
     // Completar
 }
 
-template<class T>
-Lista<T>::Lista(const Lista<T>& l) : Lista() {
+Lista::Lista(const Lista& l) : Lista() {
     //Inicializa una lista vacía y luego utiliza operator= para no duplicar el código de la copia de una lista.
     *this = l;
 }
 
-template<class T>
-Lista<T>::~Lista() {
+Lista::~Lista() {
     this->limpiar_lista_();
 }
 
-template<class T>
-Lista<T>& Lista<T>::operator=(const Lista<T>& aCopiar) {
+Lista& Lista::operator=(const Lista& aCopiar) {
     this->limpiar_lista_();
     this->longitud_ = 0;
     for (int i = 0; i < aCopiar.longitud(); ++i) {
@@ -29,8 +24,7 @@ Lista<T>& Lista<T>::operator=(const Lista<T>& aCopiar) {
     return *this;
 }
 
-template<class T>
-void Lista<T>::agregarAdelante(const T& elem) {
+void Lista::agregarAdelante(const int& elem) {
     if(this->head_ == nullptr){
         this->head_ = new Nodo(elem);
         this->tail_ = this->head_;
@@ -42,8 +36,7 @@ void Lista<T>::agregarAdelante(const T& elem) {
     this->longitud_++;
 }
 
-template<class T>
-void Lista<T>::agregarAtras(const T& elem) {
+void Lista::agregarAtras(const int& elem) {
     if(this->head_ == nullptr){
         this->head_ = new Nodo(elem);
         this->tail_ = this->head_;
@@ -54,8 +47,8 @@ void Lista<T>::agregarAtras(const T& elem) {
     }
     this->longitud_++;
 }
-template<class T>
-void Lista<T>::eliminar(Nat i) {
+
+void Lista::eliminar(Nat i) {
     if(i >=0  && i < this->longitud_){
         Nodo* temp;
         if(longitud_ == 1){
@@ -95,13 +88,11 @@ void Lista<T>::eliminar(Nat i) {
     }
 }
 
-template<class T>
-int Lista<T>::longitud() const {
+int Lista::longitud() const {
     return this->longitud_;
 }
 
-template<class T>
-const int& Lista<T>::iesimo(Nat i) const {
+const int& Lista::iesimo(Nat i) const {
     int j = 0;
     Nodo* temp = this->head_;
     while(temp != nullptr && j!=i){
@@ -111,8 +102,7 @@ const int& Lista<T>::iesimo(Nat i) const {
     return temp->data;
 }
 
-template<class T>
-int& Lista<T>::iesimo(Nat i) {
+int& Lista::iesimo(Nat i) {
     int j = 0;
     Nodo* temp = this->head_;
     while(temp != nullptr && j!=i){
@@ -122,8 +112,7 @@ int& Lista<T>::iesimo(Nat i) {
     return temp->data;
 }
 
-template<class T>
-void Lista<T>::mostrar(ostream& o) {
+void Lista::mostrar(ostream& o) {
     o << "{";
     for (int i = 0; i < this->longitud_-1; ++i) {
         o << this->iesimo(i) << ", ";
@@ -132,8 +121,7 @@ void Lista<T>::mostrar(ostream& o) {
 
 }
 
-template<class T>
-void Lista<T>::limpiar_lista_() {
+void Lista::limpiar_lista_() {
     Nodo* temp = this->head_;
     while(temp != nullptr){
         temp= temp->next;

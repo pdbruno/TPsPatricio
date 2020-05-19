@@ -8,26 +8,26 @@
  */
 
 TEST(lista_test, test_constructor_vacio) {
-    Lista<int> l;
+    Lista l;
     ASSERT_EQ(l.longitud(), 0);
 }
 
 TEST(lista_test, test_agregar_un_elemento_adelante) {
-    Lista<int> l;
+    Lista l;
     l.agregarAdelante(42);
     ASSERT_EQ(l.longitud(), 1);
     ASSERT_EQ(l.iesimo(0), 42);
 }
 
 TEST(lista_test, test_agregar_un_elemento_atras) {
-    Lista<int> l;
+    Lista l;
     l.agregarAtras(42);
     ASSERT_EQ(l.longitud(), 1);
     ASSERT_EQ(l.iesimo(0), 42);
 }
 
 TEST(lista_test, test_agregar_varios_elementos_solo_adelante) {
-    Lista<int> l;
+    Lista l;
     l.agregarAdelante(42);
     l.agregarAdelante(41);
     l.agregarAdelante(40);
@@ -40,7 +40,7 @@ TEST(lista_test, test_agregar_varios_elementos_solo_adelante) {
 }
 
 TEST(lista_test, test_agregar_varios_elementos_solo_atras) {
-    Lista<int> l;
+    Lista l;
     l.agregarAtras(42);
     l.agregarAtras(43);
     l.agregarAtras(44);
@@ -53,7 +53,7 @@ TEST(lista_test, test_agregar_varios_elementos_solo_atras) {
 }
 
 TEST(lista_test, test_agregar_varios_elementos_adelante_y_atras) {
-    Lista<int> l;
+    Lista l;
     l.agregarAdelante(42);
     l.agregarAdelante(41);
     l.agregarAtras(43);
@@ -68,7 +68,7 @@ TEST(lista_test, test_agregar_varios_elementos_adelante_y_atras) {
 }
 
 TEST(lista_test, test_eliminar_elementos) {
-    Lista<int> l;
+    Lista l;
     l.agregarAtras(42);
     l.agregarAtras(43);
     l.agregarAtras(44);
@@ -94,13 +94,13 @@ TEST(lista_test, test_eliminar_elementos) {
 }
 
 TEST(lista_test, test_constructor_por_copia) {
-    Lista<int> l;
+    Lista l;
     l.agregarAtras(42);
     l.agregarAtras(43);
     l.agregarAtras(44);
     l.agregarAtras(45);
 
-    Lista<int> otra(l);
+    Lista otra(l);
     ASSERT_EQ(otra.longitud(), 4);
     ASSERT_EQ(otra.iesimo(0), 42);
     ASSERT_EQ(otra.iesimo(1), 43);
@@ -113,13 +113,13 @@ TEST(lista_test, test_constructor_por_copia) {
 }
 
 TEST(lista_test, test_operador_asignacion) {
-    Lista<int> l;
+    Lista l;
     l.agregarAtras(42);
     l.agregarAtras(43);
     l.agregarAtras(44);
     l.agregarAtras(45);
 
-    Lista<int> otra = l;
+    Lista otra = l;
     ASSERT_EQ(otra.longitud(), 4);
     ASSERT_EQ(otra.iesimo(0), 42);
     ASSERT_EQ(otra.iesimo(1), 43);
@@ -135,12 +135,12 @@ TEST(lista_test, test_operador_asignacion) {
     otra = l;
     ASSERT_EQ(otra.longitud(), 3);
 
-    otra = Lista<int>();
+    otra = Lista();
     ASSERT_EQ(otra.longitud(), 0);
 }
 
 TEST(lista_test, test_mostar) {
-    Lista<int> l;
+    Lista l;
     l.agregarAtras(42);
     l.agregarAtras(43);
     l.agregarAtras(44);

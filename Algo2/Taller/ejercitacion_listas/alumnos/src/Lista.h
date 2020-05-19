@@ -8,7 +8,6 @@ using namespace std;
 
 typedef unsigned long Nat;
 
-template<class T>
 class Lista {
 public:
 
@@ -20,7 +19,7 @@ public:
     /**
      * Constructor por copia de la clase Lista.
      */
-    Lista(const Lista<T>& l);
+    Lista(const Lista& l);
 
     /**
      * Destructor de la clase Lista.
@@ -32,19 +31,19 @@ public:
      * @param aCopiar
      * @return
      */
-    Lista& operator=(const Lista<T>& aCopiar);
+    Lista& operator=(const Lista& aCopiar);
 
     /**
      * Agrega un elemento al principio de la Lista.
      * @param elem elemento a agregar
      */
-    void agregarAdelante(const T& elem);
+    void agregarAdelante(const int& elem);
 
     /**
      * Agrega un elemento al final de la Lista.
      * @param elem elemento a agregar
      */
-    void agregarAtras(const T& elem);
+    void agregarAtras(const int& elem);
 
     /**
      * Elimina el i-ésimo elemento de la Lista.
@@ -81,15 +80,15 @@ public:
     /**
      * Utiliza el método mostrar(os) para sobrecargar el operador <<
      */
-    friend ostream& operator<<(ostream& os, Lista<T>& l) {
+    friend ostream& operator<<(ostream& os, Lista& l) {
         l.mostrar(os);
         return os;
     }
 
 private:
     struct Nodo {
-        Nodo(const T& data);
-        T data;
+        Nodo(const int& data);
+        int data;
         Nodo* next;
         Nodo* prev;
     };

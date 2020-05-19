@@ -1,0 +1,98 @@
+TAD SimCity
+    generos simcity
+
+
+    igualdad observacional
+        (∀sc,sc': simcity)(sc =obs sc' ↔ mapa(sc) =obs mapa(sc') ∧L (∀ c : construccion)(
+                            (c ∈ casas(sc) =obs c ∈ casas(sc′) ∧ 
+                            (c ∈ casas(sc) ⇒ nivel(c, sc) =obs nivel(c, sc′)) 
+                            ∧ (c ∈ comercios(sc) =obs c ∈ comercios(sc′) ∧ (c ∈ comercios(sc) ⇒ nivel(c, sc) =obs nivel(c, sc′)))
+                            )))
+
+        (∀sc,sc': simcity)(sc =obs sc' ↔ mapa(sc) = mapa(sc') ∧ casas(sc) = casas(sc') ∧ comercios(sc) = comercios(sc') ∧L
+                            (∀c: construccion)( (c ∈ casas(sc) ∨ c ∈ comercios(sc)) ⇒ nivel(c, sc)) = nivel(c, sc')) // alternativa pato
+
+    
+    observadores
+        mapa      : simcity → mapa
+        casas     : simcity → conj(construccion)
+        comercios : simcity → conj(construccion)
+        nivel     : construccion × simcity → nat
+
+        nivel(const, nuevoTurno(casas, comercios, sc)) ≡ if const ∈ casas ∨ const ∈ comercios then //NO ES ASI
+                                                            0
+                                                        else
+                                                            1 + nivel(casa, sc)
+                                                        fi
+
+    generadores
+        nuevaPartida : mapa → simcity
+        nuevoTurno   : conj(construccion) casas × conj(construccion) coms × simcity → simcity  {#casas + #coms > 0} {NO ESTAMOS RESTRINGIENDO SI HAY UN RIO}
+
+    otras operaciones
+        casasA3Casilleros: construccion × conj(construccion) × simcity → conj(construccion)
+        mayorNivelCasas: conj(construccion) casas × simcity sc → nat {casas ⊂ casas(sc)}
+        manhattan: construccion × construccion → nat
+        moduloResta: nat × nat → nat
+
+    axiomas
+        mapa(nuevaPartida(m)) ≡ m
+        mapa(nuevoTurno(casas, coms, sc)) ≡ <π1(mapa(sc)), incrementarUnoCasa(π2(mapa(sc)) U noRepetidos(casas)), incrementarUnoComercio(π2(mapa(sc)) U noRepetidos(coms))>
+
+        manhattan(<x1, y1>, <x2, y2>) = moduloResta(x1, x2) + moduloResta(y1, y2)
+        nivel(const, nuevoTurno(casas, comercios, sc)) ≡ if const ∈ casas ∨ const ∈ comercios then 
+                                                                0
+                                                         else if const ∈ casas(sc) then
+                                                                1 + nivel(const, sc)
+                                                              else if ¬∅?(casasA3Casilleros(const, casas(sc),sc)) then 
+                                                                        mayorNivelCasas(casasA3Casilleros(const, casas(sc),sc), sc)
+                                                                    else 
+                                                                        1 + nivel(const, sc)
+                                                                   fi
+                                                               fi
+                                                         fi
+        casasA3Casilleros(comercio ∅, sc) ≡ ∅                                              
+        casasA3Casilleros(comercio, Ag(casa, c), sc) ≡ if manhattan(comercio, casa) <= 3 then
+                                                        Ag(casa, casasA3Casilleros(comercio, c, sc))
+                                                    else 
+                                                        casasA3Casilleros(comercio, c, sc)
+                                                    fi
+        mayorNivelCasas(∅, sc) ≡ 0
+        mayorNivelCasas(Ag(casa, c), sc) ≡ if mayorNivelCasas(c, sc) < nivel(casa, sc)
+                                            then nivel(casa, sc)
+                                            else mayorNivelCasas(c, sc)
+                                       fi
+                                                                
+                                                                
+        moduloResta(n, m) ≡ if n < m then
+                        m - n 
+                    else
+                        n - m
+                    fi
+Fin TAD
+
+
+TAD Construccion ES tupla(nat, nat)  
+
+TAD Mapa
+    generos mapa
+
+    igualdad observacional
+    (∀m, m': mapa)(m =obs m' ⟺ (∀coord: tupla(nat, nat))(estaOcupado(coord, m) = estaOcupado(coord, m')))
+
+    observadores basicos
+    estaOcupado: tupla(nat, nat) × mapa → bool
+
+    generadores
+    vacio: → mapa
+    agregarRioVertical: nat × mapa→ mapa
+    agregarRioHorizantal: nat × mapa→ mapa
+
+    otras operaciones
+
+    axiomas
+    estaOcupado(<x, y>, vacio) ≡ false
+    estaOcupado(<x, y>, agregarRioVertical(x', mapa)) ≡ x = x' ∨ estaOcupado(<x, y>, mapa)
+    estaOcupado(<x, y>, agregarRioHorizantal(y', mapa)) ≡ y = y' ∨ estaOcupado(<x, y>, mapa)
+
+Fin TAD

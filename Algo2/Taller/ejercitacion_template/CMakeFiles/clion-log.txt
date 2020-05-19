@@ -1,0 +1,4 @@
+Cannot generate into /home/pato/TPsPatricio/Algo2/Taller/ejercitacion_template
+It is already used for project /home/march/algoritmos2/clases/labo/03_templates/ejercitacion/alumnos
+
+Please either delete it manually or select another generation directory

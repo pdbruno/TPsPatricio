@@ -1,0 +1,154 @@
+#Ejercicio 2.3.2
+comportamientos aut:
+    - envio de tecnico si esta disponible
+    - 
+
+TAD Service
+    genero service
+
+    usa direccion, tecnico
+
+    igualdad observacional
+
+    generadores
+        crearService: conj(tecnico) → service
+        solicitar: direccion × service → service  {dir ∉ pedidosPendientes(s)}
+        terminar: direccion dir × service → service  {dir ∈ pedidosPendientes(s)}
+
+    observadores
+        ✓ tecnicos: service → conj(tecnico)
+        ✓ tecnicosDisponibles: service → conj(tecnico)
+        ✓ tecnicoAsignado: direccion × service ser → tecnico {¬∅?(tecnicosDisponibles(ser)}
+        ✓ pedidosPendientes: service → conj(direccion)
+        
+    otras operaciones
+        ✓ masCercano: conj(direccion) x direccion → conj(dir)
+        ✓ masVisitas: direccion × service → conj(tecnico)
+        ✓ multiConjVisitas: direccion × service → multiConj(tecnico)
+        ✓ soloLosMasLargos: multiConj(tecnico) → conj(tecnico)
+
+    axiomas
+    tecnicos(crearService(c)) ≡ c
+    tecnicos(solicitar(dir, ser)) ≡ tecnicos(ser)
+    tecnicos(terminar(dir, ser)) ≡ tecnicos(ser)
+    
+    tecnicosDisponibles(crearService(c)) ≡ c
+    tecnicosDisponibles(solicitar(dir, ser)) ≡ if ∅?(tecnicosDisponibles(ser))
+                                                    then ∅
+                                                    else tecnicosDisponibles(ser) - {tecnicoAsignado(dir, ser)}
+                                                fi
+    tecnicosDisponibles(terminar(dir, ser)) ≡   if ∅?(pedidosPendientes(ser))
+                                                    then 
+                                                        tecnicoAsignado(dir) U tecnicosDisponibles(ser)
+                                                    else
+                                                        tecnicosDisponibles(ser)  //Esta bien, porque hay pendientes y el que acaba de terminar fue a alguno de esos
+                                                fi
+
+    tecnicoAsignado(dir, CrearService(c)) ≡ dameUno(c)
+    tecnicoAsignado(dir, solicitar(dir', ser)) ≡ if dir≠dir'
+                                                    then
+                                                        tecnicoAsignado(dir, ser)
+                                                    else
+                                                        dameUno(tecnicosDisponibles(ser))
+                                                    fi
+    tecnicoAsignado(dir, terminar(dir', ser)) ≡ tecnicoAsignado(dir'. ser) //un chabon acaba de terminar un trabajo. si me preguntan quien es al que le toca ir a tal direccion, claramente va a ser él
+    
+
+    pedidosPendientes(CrearService(c)) ≡ ∅
+    pedidosPendientes(solicitar(dir, ser)) ≡ if ∅?(tecnicosDisponibles(ser))
+                                                then 
+                                                    Ag(dir, pedidosPendientes(ser))
+                                                else 
+                                                    pedidosPendientes(ser)
+                                             fi 
+    pedidosPendientes(terminar(dir, ser)) ≡ pedidosPendientes(ser) - MasCercano(pedidosPendientes(ser), dir)
+
+
+    masCercano(∅, dir) ≡ ∅
+    masCercano(Ag(dir', c), dir) ≡  if ∅?(c)
+                                        then
+                                            dir'
+                                        else 
+                                            if dist(dir, dir') < masCercano(c)
+                                                then
+                                                    Ag(dir', ∅)
+                                                else
+                                                    masCercano(c)
+                                            fi
+                                    fi
+
+                              (si hay mas de un pendiente a la misma distancia
+mınima, se asignara al pedido entre estos que lleve mas tiempo esperando)      pedidos PENDIENTES PUEDE SER UNA SECUENCIA, ASI CONTROLAMOS EL ORDEN
+
+
+masVisitas(dir, ser) ≡ soloLosMasLargos(multiConjVisitas(dir, ser))
+
+multiConjVisitas(dir, crearService(c)) ≡ ∅
+multiConjVisitas(dir, solicitar(dir', ser)) ≡ if dir=dir' ∧ ¬∅?(tecnicosDisponibles(ser)
+                                                then
+                                                    Ag(tecnicoAsignado(dir'. ser), masVisitas(dir, ser))
+                                                else
+                                                    masVisitas(dir, ser)
+                                              fi
+multiConjVisitas(dir, terminar(dir', ser)) ≡ if dir ∈ pedidosPendientes(ser) ∧ dir ∈ MasCercano(pedidosPendientes(ser), dir')
+                                                then
+                                                    Ag(tecnicoAsignado(dir', ser), masVisitas(dir, ser))
+                                                else
+                                                    masVisitas(dir, ser)
+                                             fi
+
+soloLosMasLargos(∅) ≡ ∅
+soloLosMasLargos(Ag(a, c)) ≡ if #(a, c) = mayorCard(Ag(a, c))
+                                then
+                                    Ag(dir', soloLosMasLargos(c))
+                                else
+                                    soloLosMasLargos(c)
+                             fi
+
+mayorCard(c) ≡ if #(dameUno(c)) > mayorCard(sinUno(c))
+                    then
+                        #(dameUno(c), c)
+                    else
+                        mayorCard(sinUno(c))
+                fi
+
+
+
+
+
+
+
+FIN TAD
+
+tecnicosEnCentral: 
+    saquemos este, es lo mismo que tecnicos disponibles, representa
+    si, pasa que si hay tecnicos disponibles cerca, mandamos esos, y sino hay que hacer dameUno(tecnicosEnCentral)
+    pero nosotros mandmos al que estaba asignado y temrino y sino nos fijamos los disponible
+    lo que digo es que disponible ≡ en la central
+    no teiene sentido una instancia donde haya un tecnico disponible y no este en la central
+    eso no es cuando el chabon termino un trabajo y esta viendo si hay otro para ir directo?
+    bueno puede ser, pongamos en standby tecnicos en central y sigamos con el siguiente
+    
+
+tecnicos a Domicilio (o simplemente “TaD”), es una empresa que provee servicio tecnico para problemas de
+electricidad en hogares y empresas. TaD cuenta con un grupo de tecnicos altamente capacitados para atender la
+demanda de sus clientes y tiene una estrategia de trabajo algo particular. Cuando alguien solicita un tecnico, la
+central de TaD verifica si alguno de sus tecnicos se encuentra en la empresa y de ser ası envıa inmediatamente
+un tecnico al domicilio de la persona. En caso de no haber tecnicos disponibles en ese momento (i.e., todos se
+encuentran atendiendo algun pedido), el pedido queda pendiente de asignacion a la espera de que algun tecnico
+se desocupe.
+Por otro lado, cuando un tecnico termina de resolver un problema, y antes de retirarse de ese domicilio, el
+tecnico avisa por radio a la central que quedo disponible para otro trabajo. Si existiesen en ese momento
+pedidos pendientes de asignacion, la central le asigna al tecnico el mas cercano al domicilio en el que este se
+encuentra y el tecnico se dirige automaticamente hacia allı (si hay mas de un pendiente a la misma distancia
+mınima, se asignara al pedido entre estos que lleve mas tiempo esperando). Por el contrario, de no haber trabajos
+pendientes, el tecnico regresa a la central y queda disponible para futuros trabajos.
+Modelar con un TAD la empresa tecnicos a Domicilio descripta teniendo en cuenta ademas que interesa saber,
+dada una direccion, quienes fueron los tecnicos que la visitaron la mayor cantidad de veces (aun si todavıa no
+resolvieron el inconveniente tecnico).
+Observacion: Se puede asumir como dado el TAD Direccion que exporta el genero direccion y la operacion
+dist(d, d
+0
+) que devuelve un nat que representa la distancia entre las direcciones d y d
+0
+.
