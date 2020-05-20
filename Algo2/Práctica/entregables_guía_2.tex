@@ -14,37 +14,77 @@
 
 \section{Complejidad}
 
-\subsection{funciones polinomiales vs. funciones exponenciales}
+\subsection{Funciones polinomiales vs. Funciones exponenciales}
 \subsubsection*{(a) Sea $b \in \mathbb{R}$ tal que $b \ge 2$. Demostrar que $n \le b^n$ para todo $n \in \mathbb{N}$, por inducción en n.}
 \paragraph*{Caso Base}
-$n = 1, b \in \mathbb{R}$ \ / \ $b \ge 2$ \\
+$n = 1, b \in \mathbb{R}$ \ / \ $b \ge 2$ \\ \\
 $1 \le b^1 = b \Leftrightarrow 1 \le 2 \le b$ \ al ser b mayor o igual a 2
 
 \paragraph*{Hipótesis Inductiva}
-$P(n) \Rightarrow P(n+1)$ \\
-$n \le b^n \Rightarrow n+1 \le b^{n+1}$ \\
-$n \le b^n \Leftrightarrow n+1 \le b^n+1$ \\
- Ahora quiero ver que \ $b^n+1 \le b^n*b$ \\
-$b^n+1 \le b^n*b \underbrace{\Leftrightarrow}_{b \ne 0} 1+\frac{1}{b^n}\le b$ \\
-$b \ge 2 \Leftrightarrow b^n \ge 2^n \Leftrightarrow \frac{1}{b^n} \le \frac{1}{2^n} \Leftrightarrow \boxed{1+\frac{1}{b^n} \le 1+\frac{1}{2^n}}$ \ Ahora quiero ver que \ $1+\frac{1}{2^n} \le b$ \\
-$n \ge 1 \Leftrightarrow 2^n \ge 2 \Leftrightarrow \frac{1}{2^n} \le \frac{1}{2} \Leftrightarrow 1+\frac{1}{2^n} \le 1+\frac{1}{2} = \frac{3}{2} \le 2 \le b$ \\
-Entonces $\boxed{1+\frac{1}{b^n} \le 1+\frac{1}{2^n} \le b}$ \\
+$P(n) \Rightarrow P(n+1)$ \\ \\
+$n \le b^n \Rightarrow n+1 \le b^{n+1}$ \\ \\
+$n \le b^n \Leftrightarrow n+1 \le b^n+1$ \\ \\
+ Ahora quiero ver que \ $b^n+1 \le b^n\,b$ \\ \\
+$b^n+1 \le b^n\,b \underbrace{\Leftrightarrow}_{b \ne 0} 1+\frac{1}{b^n}\le b$ \\ \\
+$b \ge 2 \Leftrightarrow b^n \ge 2^n \Leftrightarrow \frac{1}{b^n} \le \frac{1}{2^n} \Leftrightarrow \boxed{1+\frac{1}{b^n} \le 1+\frac{1}{2^n}}$ \ Ahora quiero ver que \ $1+\frac{1}{2^n} \le b$ \\ \\
+$n \ge 1 \Leftrightarrow 2^n \ge 2 \Leftrightarrow \frac{1}{2^n} \le \frac{1}{2} \Leftrightarrow 1+\frac{1}{2^n} \le 1+\frac{1}{2} = \frac{3}{2} \le 2 \le b$ \\ \\
+Entonces $\boxed{1+\frac{1}{b^n} \le 1+\frac{1}{2^n} \le b}$ \\\\ \\
 Así queda demostrado que $n \le n+1 \le b^n+1 \le b^{n+1}$
 
 \subsubsection*{(b) Sea $b \in \mathbb{R}$ tal que $b \ge 2$. Demostrar que $x\le b^{x+1}$ para todo $x\in \mathbb R_{\ge 0}$.}
 
-$x\in \mathbb R_{\ge 0} \Rightarrow \underbrace{\lfloor x \rfloor \in \mathbb{N}}_{por definici\acute{o}n} \wedge  \ \lfloor x \rfloor \ge 0$ \\
-$\lfloor x \rfloor \le x \le \lfloor x \rfloor + 1$ \ Ya que la parte entera de x se define como el mayor entero menor o igual a x. Esto implica que $\lfloor x \rfloor + 1$ es necesariamente entero (no negativo) y necesariamente mayor a x (si fuera menor o igual a x, estaríamos contradiciendo la definición de la parte entera)\\
+$x\in \mathbb R_{\ge 0} \Rightarrow \underbrace{\lfloor x \rfloor \in \mathbb{N}}_{por definici\acute{o}n} \wedge  \ \lfloor x \rfloor \ge 0$ \\ \\
+$\lfloor x \rfloor \le x \le \lfloor x \rfloor + 1$ \ Ya que la parte entera de x se define como el mayor entero menor o igual a x. Esto implica que $\lfloor x \rfloor + 1$ es necesariamente entero (no negativo) y necesariamente mayor a x (si fuera menor o igual a x, estaríamos contradiciendo la definición de la parte entera)\\ \\
 
-Sea $n = \lfloor x \rfloor + 1$, por lo demostrado anteriormente sabemos que $n \le b^n$\\
+Sea $n = \lfloor x \rfloor + 1$, por lo demostrado anteriormente sabemos que $n \le b^n$\\ \\
 Entonces $x \le \lfloor x \rfloor + 1 \le b^{\lfloor x \rfloor + 1} \le b^{x + 1}$
 
 \subsubsection*{(c) Sea $b \in \mathbb{R}, k \in \mathbb{N}$ tal que $b > 1$ y $b^k \ge 2$. Demostrar que $\frac{x}{k}\le b^{x+k}$ para todo $x\in \mathbb R_{\ge 0}$.}
 
-Por lo demostrado anteriormente, $\frac{x}{k} \le b'^{\frac{x}{k} + 1}$ para alguna base $b' \ge 2$, ya que $\frac{x}{k} \in \mathbb R_{\ge 0}$. Sea esa base $b^k$.\\
+Por lo demostrado anteriormente, $\frac{x}{k} \le b'^{\frac{x}{k} + 1}$ para alguna base $b' \ge 2$, ya que $\frac{x}{k} \in \mathbb R_{\ge 0}$. Sea esa base $b^k$.\\ \\
 Entonces vale que $\frac{x}{k}\le (b^k)^{\frac{x}{k} + 1} = b^{x+k}$ para todo $x\in \mathbb R_{\ge 0}$
 
-\subsubsection*{(c) Sea $b \in \mathbb{R}, k \in \mathbb{N}$ tal que $b > 1$ y $b^k \ge 2$. Demostrar que $(\frac{x}{pk})^n \le b^{n(\frac{x}{p} + k)}$ para todo $x\in \mathbb R_{\ge 0}$ y para todo $n, p \in \mathbb{N}$.}
+\subsubsection*{(d) Sea $b \in \mathbb{R}, k \in \mathbb{N}$ tal que $b > 1$ y $b^k \ge 2$. Demostrar que $(\frac{x}{pk})^n \le b^{n(\frac{x}{p} + k)}$ para todo $x\in \mathbb R_{\ge 0}$ y para todo $n, p \in \mathbb{N}$.}
+
+\paragraph*{Caso Base}
+$n = 1$ \\ \\
+$\frac{x}{pk} \le b^{\frac{x}{p} + k}$ \  \ Sea $y = \frac{x}{x}$\\ \\
+$x \ge 0$, $p \ge 1 \Rightarrow y \ge 0$ \\ \\
+$\frac{y}{k}\le b^{y+k}$ por lo demostrado en el punto c)
+
+\paragraph*{Hipótesis Inductiva}
+$P(n) \Rightarrow P(n+1)$ \\
+
+$(\frac{y}{k})^n \le b^{n(y+k)} \Rightarrow (\frac{y}{k})^{n+1} \le b^{(n+1)(y+k)}$\\ \\
+$(\frac{y}{k})^n \frac{y}{k} \le b^{n(y+k)} \, b^{y+k}$ por el Caso Base y por suponer P(n)\\ \\
+En otras palabras C.B $\wedge$ P(n) $\Rightarrow$ P(n+1) (multiplicando sus respectivas desigualdades)
+
+\subsubsection*{(e) Demostrar que para toda base $b \in \mathbb{R}$ y para todo exponente $p \in \mathbb{N}$ vale que $x^p \in O(b^x)$, vistas como funciones de $x \in \mathbb R_{\ge 0}$.}
+
+Por lo demostrado en d), y tomando $p=n$ (lo cual es válido porque valía para todo $p$ y $n$ naturales), vale que \\ \\
+$(\frac{x}{pk})^p \le b^{x + pk} \Leftrightarrow \boxed{x^p \le b^x (p\,k\,b^k)^p}$\\ \\
+Por otro lado, $x^p \in O(b^x) \Leftrightarrow \exists q, x_0 \in R_{\ge 0} / x\ge x_0 \Rightarrow x^p \le q \, b^x$\\ \\
+Sea $q = (p\,k\,b^k)^p$, con $k \in \mathbb{N} / b^k \ge 2 \Leftrightarrow k \ge log_{b}(2)$ entonces $q$ hace que la desigualdad valga para todo $x \ge 0$, en particular vale para $x_0 = 0$
+
+\subsection{Cálculo de complejidad mejor y peor caso}
+
+$T_{mejor}(n) = \Theta (1) + \Theta (1) + \sum_{i=0}^{n} \Theta (1) +\Theta (1) + \Theta (1)$\\
+ $= \Theta (1) + n \, \Theta (1)$\\
+ $= \Theta (n)$\\ \\
+$T_{peor}(n) = \Theta (1) + \Theta (1) + \sum_{i=0}^{n} \Theta (1) +\Theta (1) + \sum_{i=0}^{n} \sum_{j=i}^{n} \Theta (1)$\\
+$= \Theta (n) +\Theta (1) \sum_{i=0}^{n}(n-i)$ \\
+$= \Theta (n) +\Theta (1) (\sum_{i=0}^{n}n - \sum_{i=0}^{n}i)$\\
+$= \Theta (n) +\Theta (1) (n^2 - \frac{n(n+1)}{2})$\\
+$n^2 - \frac{n(n+1)}{2} = \frac{n^2}{2} - \frac{n}{2} \in \Theta (n^2)$ (*)\\
+$= \Theta (n) +\Theta (n^2)$\\
+$=\Theta (n^2)$\\ \\
+
+(*)$\frac{n^2}{2} - \frac{n}{2} \in O(n^2)$ trivialmente, ya que la primer función es siempre menor\\
+$\frac{n^2}{2} - \frac{n}{2} \in \Omega (n^2) \Leftrightarrow \exists k, n_0 \ge 0 / n\ge n_0 \Rightarrow \frac{n^2}{2} - \frac{n}{2} \ge k \, n^2$\\
+$\frac{n^2}{2} - \frac{n}{2} \ge k \, n^2 \Rightarrow  \frac{1}{2} - \frac{1}{2n} \ge k$ Tomemos $k = \frac{1}{4}$\\
+$\frac{1}{2} - \frac{1}{2n} \ge \frac{1}{4} \Rightarrow \frac{1}{4} \ge \frac{1}{2n} \Rightarrow 2 \le n$ Entonces alcanza con tomar $n_0 = 2$
+
+
 
 \section{Invariante de representación y \\función de abstracción}
 

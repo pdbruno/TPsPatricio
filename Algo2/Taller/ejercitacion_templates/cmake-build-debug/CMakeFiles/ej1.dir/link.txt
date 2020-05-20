@@ -1,0 +1,1 @@
+/usr/bin/c++   -std=gnu++11 -ggdb3 -g -g   CMakeFiles/ej1.dir/tests/test_templates.cpp.o  -o ej1  tests/google-test/libgtest.a tests/google-test/libgtest_main.a tests/google-test/libgtest.a -lpthread 
