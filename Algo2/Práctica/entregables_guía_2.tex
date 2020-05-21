@@ -45,6 +45,7 @@ Por lo demostrado anteriormente, $\frac{x}{k} \le b'^{\frac{x}{k} + 1}$ para alg
 Entonces vale que $\frac{x}{k}\le (b^k)^{\frac{x}{k} + 1} = b^{x+k}$ para todo $x\in \mathbb R_{\ge 0}$
 
 \subsubsection*{(d) Sea $b \in \mathbb{R}, k \in \mathbb{N}$ tal que $b > 1$ y $b^k \ge 2$. Demostrar que $(\frac{x}{pk})^n \le b^{n(\frac{x}{p} + k)}$ para todo $x\in \mathbb R_{\ge 0}$ y para todo $n, p \in \mathbb{N}$.}
+(pregunta para el profe que me corrija: no se podría tomar raíz enésima a ambos lado?)
 
 \paragraph*{Caso Base}
 $n = 1$ \\ \\
@@ -58,7 +59,7 @@ $P(n) \Rightarrow P(n+1)$ \\
 $(\frac{y}{k})^n \le b^{n(y+k)} \Rightarrow (\frac{y}{k})^{n+1} \le b^{(n+1)(y+k)}$\\ \\
 $(\frac{y}{k})^n \frac{y}{k} \le b^{n(y+k)} \, b^{y+k}$ por el Caso Base y por suponer P(n)\\ \\
 En otras palabras C.B $\wedge$ P(n) $\Rightarrow$ P(n+1) (multiplicando sus respectivas desigualdades)
-
+\newpage
 \subsubsection*{(e) Demostrar que para toda base $b \in \mathbb{R}$ y para todo exponente $p \in \mathbb{N}$ vale que $x^p \in O(b^x)$, vistas como funciones de $x \in \mathbb R_{\ge 0}$.}
 
 Por lo demostrado en d), y tomando $p=n$ (lo cual es válido porque valía para todo $p$ y $n$ naturales), vale que \\ \\
@@ -87,7 +88,36 @@ $\frac{1}{2} - \frac{1}{2n} \ge \frac{1}{4} \Rightarrow \frac{1}{4} \ge \frac{1}
 
 
 \section{Invariante de representación y \\función de abstracción}
+\subsubsection*{(a) Escribir en castellano el invariante de representación.}
+\begin{enumerate}
+\item e.inactivasVacías y e.inactivasNoVacías no tienen pestañas en común
+\item el contenido de las pestañas en e.inactivasNoVacías no puede ser la secuencia vacía
+\item e.seleccionada no está en e.inactivasVacías ni en e.inactivasNoVacías
+\item los números de las pestañas deben ser los números del 0 al total de pestañas
+\end{enumerate}
 
+\newpage
+
+\subsubsection*{(b) Escribir formalmente el invariante de representación.}
+  \Rep[$\widehat{estr}$][e]{($\forall t$: tupla $\langle nro$: nat,$contenido$: string$\rangle$, $n$: nat)\\
+  ($(t \in e.inactivasNoVacias \wedge n \in e.inactivasVacias) \Rightarrow\\ (\neg vacia?(t.contenido) \wedge\\
+  t.nro \neq e.seleccionada \wedge \\
+  n \neq t.nro \wedge\\
+  n\neq e.seleccionada))\wedge$\\
+  ($\forall i$: nat)($0 \leq i \leq \#e.inactivasVacias + \#e.inactivasNoVacias + 1 \Rightarrow$\\
+  ($i = e.seleccionada \vee i \in e.inactivasVacias \vee$\\
+  ($\exists t$: tupla $\langle nro$: nat,$contenido$: string$\rangle$)\\
+  ($t \in e.inactivasNoVacias \wedge t.nro = i$))
+  }
+
+\subsubsection*{(c) Escribir formalmente la función de abstracción.}
+  \Abs[$\widehat{estr}$]{editor}[e]{ed}{$\#pesta\tilde{n}as(ed) = \#e.inactivasVacias + \#e.inactivasNoVacias + 1 \wedge\\
+  seleccionada?(ed, e.seleccionada) \wedge$ \\
+  ($\forall t$: tupla $\langle nro$: nat,$contenido$: string$\rangle$, $n$: nat)\\
+  ($(n \in e.inactivasVacias \Rightarrow vacia?(texto(ed, n))) \wedge \\
+  (t \in e.inactivasNoVacias \Rightarrow texto(ed, t.nro) = t.contenido)) \wedge \\
+  texto(ed, e.seleccionada) = e.anteriores \& e.posteriores \wedge \\
+  posicionCursor(ed) = long(e.anteriores)$}
 
 
 \end{document}
