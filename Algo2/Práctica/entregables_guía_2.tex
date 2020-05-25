@@ -1,14 +1,18 @@
+\UseRawInputEncoding
 \documentclass[10pt, a4paper]{article}
 \usepackage[spanish]{babel}
 \usepackage[utf8]{inputenc}
-\usepackage{aed2-symb,aed2-itef,aed2-tad,aed2-diseno, amssymb, parskip}
-
-
-\author{Algoritmos y Estructuras de Datos II, DC, UBA.}
-\date{}
-\title{Super TP AED2}
+\usepackage{aed2-symb,aed2-itef,aed2-tad,aed2-diseno, caratula,amssymb, parskip}
 
 \begin{document}
+
+
+\integrante{Bruno, Patricio Damián}{62/19}{pdbruno@gmail.com}
+\materia{Algoritmos y Estructuras de Datos II}
+\submateria{Guía 2}
+\titulo{Ejercicios obligatorios de la práctica}
+
+
 
 \maketitle
 
@@ -99,16 +103,25 @@ $\frac{1}{2} - \frac{1}{2n} \ge \frac{1}{4} \Rightarrow \frac{1}{4} \ge \frac{1}
 \newpage
 
 \subsubsection*{(b) Escribir formalmente el invariante de representación.}
-  \Rep[$\widehat{estr}$][e]{($\forall t$: tupla $\langle nro$: nat,$contenido$: string$\rangle$, $n$: nat)\\
-  ($(t \in e.inactivasNoVacias \wedge n \in e.inactivasVacias) \Rightarrow\\ (\neg vacia?(t.contenido) \wedge\\
-  t.nro \neq e.seleccionada \wedge \\
-  n \neq t.nro \wedge\\
-  n\neq e.seleccionada))\wedge$\\
-  ($\forall i$: nat)($0 \leq i \leq \#e.inactivasVacias + \#e.inactivasNoVacias + 1 \Rightarrow$\\
-  ($i = e.seleccionada \vee i \in e.inactivasVacias \vee$\\
+
+(1) $(\forall t$: tupla $\langle nro$: nat,$contenido$: string$\rangle$, $n$: nat)\\
+($(t \in e.inactivasNoVacias \wedge n \in e.inactivasVacias) \Rightarrow\\
+n \neq t.nro)$\\
+\\
+(2) $(\forall t$: tupla $\langle nro$: nat,$contenido$: string$\rangle$)\\
+($t \in e.inactivasNoVacias \Rightarrow \neq \neg vacia?(t.contenido))$\\
+\\
+(3) $(\forall t$: tupla $\langle nro$: nat,$contenido$: string$\rangle$, $n$: nat)\\
+($(t \in e.inactivasNoVacias \wedge n \in e.inactivasVacias) \Rightarrow\\
+t.nro \neq e.seleccionada \wedge n\neq e.seleccionada)$\\
+\\
+(4) ($\forall i$: nat)($0 \leq i \leq \#e.inactivasVacias + \#e.inactivasNoVacias + 1 \Rightarrow$\\
+  ($i = e.seleccionada \vee i \in e.inactivasVacias \ \vee$\\
   ($\exists t$: tupla $\langle nro$: nat,$contenido$: string$\rangle$)\\
   ($t \in e.inactivasNoVacias \wedge t.nro = i$))
-  }
+
+
+  \Rep[$\widehat{estr}$][e]{(1) $\wedge$ (2) $\wedge$ (3) $\wedge_{L}$ (4)}
 
 \subsubsection*{(c) Escribir formalmente la función de abstracción.}
   \Abs[$\widehat{estr}$]{editor}[e]{ed}{$\#pesta\tilde{n}as(ed) = \#e.inactivasVacias + \#e.inactivasNoVacias + 1 \wedge\\
