@@ -1,8 +1,9 @@
-\UseRawInputEncoding
+
 \documentclass[10pt, a4paper]{article}
 \usepackage[spanish]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage{aed2-symb,aed2-itef,aed2-tad,aed2-diseno, caratula,amssymb, parskip}
+\usepackage{algorithmicx, algpseudocode, algorithm}
 
 \begin{document}
 
@@ -73,10 +74,38 @@ Sea $q = (p\,k\,b^k)^p$, con $k \in \mathbb{N} / b^k \ge 2 \Leftrightarrow k \ge
 
 \subsection{Cálculo de complejidad mejor y peor caso}
 
+	
+\begin{algorithm}[H]{P(\In{A}{arreglo(nat))}) $\to$ $res$ : arreglo(nat)}	
+	\begin{algorithmic}[1]
+			 \State $n \gets tam(a)$			\Comment $\Theta(1)$
+			 \State $M \gets 0$					\Comment $\Theta(1)$
+			 \For{$i\gets 0$ to $n-1$}			\Comment $\Theta(n)$
+			 	\If{$A[i] \geq n$}				\Comment $\Theta(1)$
+			 		\State $A[i]\gets 0$			\Comment $\Theta(1)$
+			 	\Else
+			 		\State $M\gets max(M, A[i])$	\Comment $\Theta(1)$
+			 	\EndIf
+			 \EndFor
+			 
+			 \State $B \gets$ nuevo arreglo(nat) indexado desde 0 hasta M inclusive, inicializado en 0		\Comment $\Theta(M)$
+    	
+    		\For{$i\gets 0$ to $M$}				\Comment $\Theta(M)$
+    			\For{$j\gets i$ to $M$}			\Comment $\Theta(M)$
+			 		\State $B[A[i]]\gets 1 + B[A[i]] + B[A[j]]$	\Comment $\Theta(1)$
+			 	\EndFor
+			\EndFor \\
+			\Return $B$
+		\medskip
+		\Statex \underline{Justificación:} Las primeras dos líneas son asignaciones de enteros, $\Theta(1)$. La guarda del if es una comparación de enteros, la instrucción siguiente es una asignación de enteros (recordar que acceder a una posición de un arreglo toma tiempo constante) y el bloque del else implica evaluar el máximo entre dos enteros y asignarlo a un variable, todo esto tambíen es $\Theta(1)$. La inicialización de B toma tiempo lineal en función de su tamaño, M.
+		Si A tiene un elemento igual a n-1, estaremos en el peor caso y M tomará su mayor valor posible: n-1. El en el mejor caso, todos los elementos son 0 o mayores o iguales a n, y M valdrá 0. En el peor cado reemplazo $\Theta(M)$ por $\Theta(n)$ y en el mejor, por $\Theta(1)$
+    \end{algorithmic}
+\end{algorithm}	
+
 $T_{mejor}(n) = \Theta (1) + \Theta (1) + \sum_{i=0}^{n} \Theta (1) +\Theta (1) + \Theta (1)$\\
  $= \Theta (1) + n \, \Theta (1)$\\
- $= \Theta (n)$\\ \\
-$T_{peor}(n) = \Theta (1) + \Theta (1) + \sum_{i=0}^{n} \Theta (1) +\Theta (1) + \sum_{i=0}^{n} \sum_{j=i}^{n} \Theta (1)$\\
+ $= \Theta (n)$\\ \\ \\
+ 
+$T_{peor}(n) = \Theta (1) + \Theta (1) + \sum_{i=0}^{n} \Theta (1) +\Theta (n) + \sum_{i=0}^{n} \sum_{j=i}^{n} \Theta (1)$\\
 $= \Theta (n) +\Theta (1) \sum_{i=0}^{n}(n-i)$ \\
 $= \Theta (n) +\Theta (1) (\sum_{i=0}^{n}n - \sum_{i=0}^{n}i)$\\
 $= \Theta (n) +\Theta (1) (n^2 - \frac{n(n+1)}{2})$\\

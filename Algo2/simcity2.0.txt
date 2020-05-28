@@ -1,0 +1,98 @@
+Decisiones tomadas:
+    - En caso de solaparse un comercio y una construcción, independientemente del nivel, 
+        dejamos la casas (A menos que sea de máximo nivel el comercio, pero ese caso al ser una restricción, nunca sucederó)
+    - Si dos casas se solapan, queda la de mayor nivel
+    - Dos simcities no se pueden unir si sus construcciones de mayor nivel están solapadas (es un restricción del generador)
+    - La operacion de unión de dos simcity actualiza los niveles según el criterio que definimos y hace que los comercios adquieran el 
+        nivel de la casa cercana más antigua
+
+Extendemos de TAD Simcity
+
+generadores
+    • ∪ • : simcity a x simcity b → simcity c       {(∀c: construccion)(c ∈ (casas(a) ∪ comercios(a) ∪ casas(b) ∪ comercios(b)) ⟹ₗ
+                                                     ¬estaOcupado(c, mapa(a) ∪ mapa(b))) ∧ ∅?(construccionesMayorNivel(a) ∩ (casas(b) ∪ comercios(b)))
+                                                     ∧ ∅?(construccionesMayorNivel(b) ∩ (casas(a) ∪ comercios(a)))}				
+
+observador
+    cantPartidasUnidas: simcity → nat
+    antigüedad: simcity → nat
+
+otras operaciones
+    construccionesMayorNivel:   simcity → conj(construccion)
+    construccionesNoSolapadas:  conj(construccion) × conj(construccion) → conj(construccion)
+    maxNivel:                   conj(construccion) × simcity → nat
+    buscarMayores:              conj(construccion) × simcity → conj(construccion)
+    devolverPartidaDondeEsCasa: construccion × simcity  × simcity → simcity
+    obtenerNivelComercio :      construccion c × simcity sc  → nat                          {c ∈ comercios(sc)}
+
+axiomatizacion
+
+    antigüedad(nuevaPartida(m)) ≡ 0
+    antigüedad(nuevoTurno(casas, coms, sc)) ≡ 1 + antigüedad(sc)
+    antigüedad(sc ∪ sc´) ≡ max(antigüedad(sc), antigüedad(sc´))
+
+    cantPartidasUnidas(nuevaPartida(m)) ≡ 0
+    cantPartidasUnidas(nuevoTurno(casas, coms, sc)) ≡ cantPartidasUnidas(sc)
+    cantPartidasUnidas(sc ∪ sc´) ≡ 1 + cantPartidasUnidas(sc)
+
+    construccionesMayorNivel(sc) ≡ buscarMayores(casas(sc) ∪ comercios(sc), sc)
+
+    maxNivel(∅, sc) ≡ 0
+    maxNivel(Ag(const, c), sc) ≡ max(nivel(const, sc), maxNivel(c, sc))
+
+    buscarMayores(∅, sc) ≡ ∅
+    buscarMayores(Ag(const, c), sc) ≡ if nivel(cont) = maxNivel(casas(sc) ∪ comercios(sc)) then
+                                        Ag(const, buscarMayores(c, sc))
+                                      else
+                                        buscarMayores(c, sc)
+                                      fi
+
+
+    mapa(sc ∪ sc′) ≡ mapa(sc) ∪ mapa(sc´)
+
+
+    nivel(const, sc ∪ sc´) ≡ if const ∈ casas(sc) ∩ casas(sc′) then 
+                                max(nivel(const, sc), nivel(const, sc′))
+                             else
+                                if const ∈ comercios(sc) ∩ comercios(sc′) then
+                                    obtenerNivelComercio(const, sc, sc´)
+                                else 
+                                    nivel(const, devolverPartidaDondeEsCasa(const, sc, sc´))
+                                fi
+                             fi
+                            
+    devolverPartidaDondeEsCasa(const, sc, sc´) ≡ if const ∈ casas(sc) then
+                                                    sc
+                                                else
+                                                    sc´
+                                                fi 
+
+
+    obtenerNivelComercio(c, sc, sc´) ≡  if ¬∅?(casasA3Casilleros(c, casas(sc), sc)) then 
+                                            if mayorNivelCasas(casasA3Casilleros(const, casas(sc), sc), sc) > max(nivel(c, sc), nivel(c, sc´)) then
+                                                mayorNivelCasas(casasA3Casilleros(c, casas(sc), sc), sc)
+                                            else
+                                                max(nivel(c, sc), nivel(c, sc´))
+                                            fi
+                                        else
+                                            max(nivel(c, sc), nivel(c, sc´))
+                                        fi
+
+
+               
+
+    casas(sc ∪ sc´) ≡ casas(sc) ∪ casas(sc´)
+    comercios(sc ∪ sc´) ≡ (comerciones(sc) ∪ comerciones(sc´)) - casas(sc ∪ sc´)
+                                                        
+
+Extendemos de TAD Mapa
+    otra operación
+        ...
+        • ∪ •: mapa × mapa → mapa
+    
+    axiomatizacion
+        ...
+        m ∪ vacio = m
+        m ∪ agregarRioVertical(m´) ≡ agregarRioVertical(m) ∪ m´
+        m ∪ agregarRioHorizantal(m´) ≡ agregarRioHorizantal(m) ∪ m´
+Fin TAD
