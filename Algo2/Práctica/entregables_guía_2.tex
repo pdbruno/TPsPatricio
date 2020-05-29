@@ -138,13 +138,13 @@ $\frac{1}{2} - \frac{1}{2n} \ge \frac{1}{4} \Rightarrow \frac{1}{4} \ge \frac{1}
 n \neq t.nro)$\\
 \\
 (2) $(\forall t$: tupla $\langle nro$: nat,$contenido$: string$\rangle$)\\
-($t \in e.inactivasNoVacias \Rightarrow \neq \neg vacia?(t.contenido))$\\
+($t \in e.inactivasNoVacias \Rightarrow \neg vacia?(t.contenido))$\\
 \\
 (3) $(\forall t$: tupla $\langle nro$: nat,$contenido$: string$\rangle$, $n$: nat)\\
 ($(t \in e.inactivasNoVacias \wedge n \in e.inactivasVacias) \Rightarrow\\
 t.nro \neq e.seleccionada \wedge n\neq e.seleccionada)$\\
 \\
-(4) ($\forall i$: nat)($0 \leq i \leq \#e.inactivasVacias + \#e.inactivasNoVacias + 1 \Rightarrow$\\
+(4) ($\forall i$: nat)($0 \leq i < \#e.inactivasVacias + \#e.inactivasNoVacias + 1 \Rightarrow$\\
   ($i = e.seleccionada \vee i \in e.inactivasVacias \ \vee$\\
   ($\exists t$: tupla $\langle nro$: nat,$contenido$: string$\rangle$)\\
   ($t \in e.inactivasNoVacias \wedge t.nro = i$))
