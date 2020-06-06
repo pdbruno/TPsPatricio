@@ -66,10 +66,9 @@ class Conjunto
         // Puntero a la raíz de nuestro árbol.
         Nodo* _raiz;
         void destruir(Nodo* n);
-        bool recursiveInsertar(const T& clave, Nodo**);
-        bool recursiveRemover(const T& clave, Nodo** current);
-        Nodo* inmediatoSuc(const Nodo* n);
-
+        bool recursiveInsertar(const T&, Nodo**);
+        bool recursiveRemover(const T&, Nodo**);
+        void mostrarInOrder(std::ostream& o, const Nodo* n) const;
 };
 
 template<class T>

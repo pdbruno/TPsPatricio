@@ -1,8 +1,14 @@
 
+/*Buenas, algunos comentarios:
+ * 1- no es el código más lindo que escribí en mi vida
+ * 2- la razón por la cual usé recurisón en insertar y en remover fue para poder precalcular la propiedad 'cant' de cada nodo en O(1)
+ * sin tener que usar un stack (se podría decir que al fin y al cabo estoy usando el call stack para volver sobre mis pasos y poder modificar 'cant' de los padres de ser necesario)
+ * 3- es verdad que en ningún lado estoy aprovechando el hecho de que cada nodo guarda su propio 'cant', pero podría ser útil si llego a necesitar reflejar el inOrder
+ * en un vector (como enseñaron en al clase de ABB) o si quisiera generar otro árbol usando como raíz un nodo existente
+ * */
+
 template <class T>
-Conjunto<T>::Conjunto(): _raiz(nullptr) {
-    // Completar
-}
+Conjunto<T>::Conjunto(): _raiz(nullptr) {}
 
 template <class T>
 Conjunto<T>::~Conjunto() { 
@@ -141,30 +147,33 @@ bool Conjunto<T>::recursiveRemover(const T &clave, Nodo** current) { //true sign
 
 template <class T>
 const T& Conjunto<T>::siguiente(const T& clave) {
-    Nodo* prev = nullptr;
+    Nodo* padre = nullptr;
+    Nodo* ultimoGiroALaIzq = nullptr;
     Nodo* current = _raiz;
     while (current->valor != clave){
-        prev = current;
+        padre = current;
         if(clave > current->valor){
             current = current->der;
         } else if(clave < current->valor){
+            ultimoGiroALaIzq = current;
             current = current->izq;
         }
     }
     if(current->der == nullptr){
-        return prev->valor;
+        if(padre->izq == current){
+            return padre->valor;
+        }else{
+            return ultimoGiroALaIzq->valor;
+        }
     } else {
-        return inmediatoSuc(current)->valor;
+        current = current->der;
+        while (current->izq != nullptr){
+            current = current->izq;
+        }
+        return current->valor;
     }
 }
-template <class T>
-typename Conjunto<T>::Nodo* Conjunto<T>::inmediatoSuc(const Nodo* n) {
-    Nodo* current = n->der;
-    while (current->izq != nullptr){
-        current = current->izq;
-    }
-    return current;
-}
+
 
 
 template <class T>
@@ -195,7 +204,19 @@ unsigned int Conjunto<T>::cardinal() const {
 }
 
 template <class T>
-void Conjunto<T>::mostrar(std::ostream&) const {
-    assert(false);
+void Conjunto<T>::mostrar(std::ostream& o) const {
+    mostrarInOrder(o, _raiz);
+}
+template <class T>
+void Conjunto<T>::mostrarInOrder(std::ostream& o, const Nodo* n) const {
+    if(n->izq != nullptr ){
+        mostrarInOrder(o, n->izq);
+    }
+    o << n->valor << ' ';
+
+    if(n->der != nullptr) {
+        mostrarInOrder(o, n->der);
+    }
+
 }
 
