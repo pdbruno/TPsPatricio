@@ -141,3 +141,48 @@ union(in A: ABB, in B: ABB) -> res: ABB {  //es θ(n+m)
     exactamente igual que las listas ordenadas
 
 }
+
+
+
+Ejercicio 6)
+DiccHist(k, σ) se representa con Dicc(k, lista(sigma))
+
+
+    Rep: estr e → bool
+    Rep(e) ≡ true
+
+    Abs: estr e → diccHist
+    Abs(vacio) ≡ vacio //el segundo vacio es de dicc normal
+    Abs(definir(k, sig, dicHist)) ≡ definir(k, sig, abs(dicHist)) //el segundo definir es de dicc normal
+
+Definido? O(n)
+Vac´ıo O(1)
+Significado O(n)
+Definir O(n)
+BorrarSignificado O(n) la pre es que este definido y la post es que res coincide con BorrarSignificado abstractovich
+CantSignificados O(n) la pre es que este definido y la post es que res coincide con CantSignificados abstractovich
+
+el resto de la interfaz es igual a diccionario
+
+definir(clave, significado, dic){
+    It = CrearIt(dic)
+    encontro = false
+    while(haySiguiente(It) && !encontro){
+        if(siguienteClave(It) == clave){
+            encontro = true
+        }
+    }
+    if(!encontro){
+       It = DefinirRapido(dic, Vacia //de listas)
+    }
+    AgregarAdelante(SiguienteSignificado(It), significado)
+}
+
+CantSignificados(clave, dic){
+    longitud(Significado(dic, clave))
+}
+
+BorrarSignificado(clave, dic){
+    It = CrearIt(Significado(dic, clave))
+    EliminarSiguiente(It)
+}
