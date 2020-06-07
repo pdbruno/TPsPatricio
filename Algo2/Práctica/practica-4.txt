@@ -1,0 +1,143 @@
+DISEÑAR = 1- estructura
+          2- Rep y Abs
+          3- algoritmos mas importantes y justificar que se cumplen los requerimientos
+
+Ejercicio 1
+Considere el TADMulticonjunto(Nat).
+1.  Dis ́e ̃nelo utilizando listas enlazadas de naturales. Calcule el orden de complejidad (de peor caso) de lasoperaciones de inserci ́on, borrado y c ́alculo de la cantidad de repeticiones de un elemento.
+2.  Piense en otras estructuras –m ́as all ́a de las listas– y estime los  ́ordenes de complejidad de peor caso quetendr ́ıan las operaciones mencionadas.
+
+n es i=0 ∑ ∞  #(conj, i)
+
+1) insercion O(1), borrado O(n), cant de repeticiones O(n)
+Multiconjunto se representa con lista(nat)
+rep(e) ≡ true
+abs(e) ≡ if e = Vacia() then ∅ else Ag(Primero(e), Abs(Fin(e)))
+
+insertar(inout multi, nat n){
+    AgregarAdelante(multi, n)
+}
+
+borrar(inout multi, nat n){
+    it = CrearIt(multi)
+    encontrado = false
+    while HaySiguiente(it) && !encontrado {
+        if(Siguiente(it) == n){
+            EliminarSiguiente(it)
+            encontrado = true
+        }
+        Avanzar(It)
+    }
+}
+cardinal(inout multi, nat n) -> nat res{
+    it = CrearIt(multi)
+    res = 0
+    while HaySiguiente(it) {
+        if(Siguiente(it) == n){
+            res++
+        }
+        Avanzar(It)
+
+    }
+}
+
+2.
+arbol AVL (el valor del nodo es una tupla con la clave y el cardinal) todo es O(log n) siendo n la cantidad de claves distintas
+diccionario (la clave es el numero y el significado es el card) todo es O(n) (tambien cambia la definicion de n)
+hash table (u know the drill)
+
+Ejercicio 2
+1.
+lista enlazada ordenada (GRACIAS ALGO 1)
+interseccion(in A: lista, in B: lista) -> res: lista {  //es θ(n+m)
+    res = Vacia()
+    itA = CrearIt(A)
+    itB = CrearIt(B)
+    while(HaySiguiente(itA) || HaySiguiente(itB)){
+        if(HaySiguiente(itA) && HaySiguiente(itB)){
+
+            if(Siguiente(itA) == Siguiente(itB)){
+                AgregarAtras(res, Siguiente(itA))
+                Avanzar(ItA)
+                Avanzar(ItB)
+            } else if(Siguiente(itA) < Siguiente(itB)){
+                Avanzar(ItA)
+            } else {
+                Avanzar(ItB)
+            }
+
+        } else if(HaySiguiente(itA)){
+
+            if(Siguiente(itA) == Anterior(itB)){
+                AgregarAtras(res, Siguiente(itA))
+                break
+            } else if(Siguiente(itA) < Siguiente(itB)){
+                Avanzar(ItA)
+            } else {
+                break
+            }
+
+        } else {
+            idem B
+        }
+    }
+}
+
+union(in A: lista, in B: lista) -> res: lista {  //es θ(n+m) 
+    res = Vacia()
+    itA = CrearIt(A)
+    itB = CrearIt(B)
+    while(HaySiguiente(itA) || HaySiguiente(itB)){
+        if(!HaySiguiente(itB) || (HaySiguiente(itA) && Siguiente(itA) < Siguiente(itB))){
+
+            AgregarAtras(res, Siguiente(itA))
+            Avanzar(ItA)
+
+        } else if(HaySiguiente(itA)){
+
+            AgregarAtras(res, Siguiente(itB))
+            Avanzar(ItB)
+
+        }
+    }
+}
+
+lista enlazada no ordenada 
+interseccion(in A: lista, in B: lista) -> res: lista {  //es θ(n*m)
+    res = Vacia()
+    itA = CrearIt(A)
+    itB = CrearIt(B)
+    while(HaySiguiente(itA)){ //θ(n)
+        if(Esta(Siguiente(ItA), B)){ //θ(m)
+            AgregarAtras(res, Siguiente(itA))
+        }
+    }
+}
+
+union(in A: lista, in B: lista) -> res: lista {  //es θ(n*m)
+
+    res = A //por copia θ(n)
+    itA = CrearIt(A)
+    itB = CrearIt(B)
+
+    while(HaySiguiente(itB)){ //θ(m)
+        if(!Esta(Siguiente(ItB), res)){ //θ(n)
+            AgregarAtras(res, Siguiente(itB))
+        }
+    }
+
+}
+
+ABB //ponele que los puedo iterar con inorder
+http://www.cs.cmu.edu/afs/cs/academic/class/15210-s12/www/lectures/lecture14.pdf
+https://www.cs.cmu.edu/afs/cs/academic/class/15210-s15/www/lectures/bst-notes.pdf
+
+interseccion(in A: ABB, in B: ABB) -> res: ABB {  //es θ(n+m)
+    exactamente igual que las listas ordenadas
+}
+
+union(in A: ABB, in B: ABB) -> res: ABB {  //es θ(n+m)
+
+    exactamente igual que las listas ordenadas
+
+}
