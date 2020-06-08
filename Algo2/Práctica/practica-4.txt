@@ -186,3 +186,48 @@ BorrarSignificado(clave, dic){
     It = CrearIt(Significado(dic, clave))
     EliminarSiguiente(It)
 }
+
+Ejercicio 7
+ABB(α) se representa con estr
+donde estr es tupla(raiz: puntero(α))
+donde nodo es tupla(dato: α, izq: puntero(nodo), der: puntero(nodo))
+
+ya esta hecho BRO JAJAJA en la practica 3 (voy a usar este)
+estr es tupla
+<altura: nat,
+izq: puntero(estr),
+raiz : α,
+der : puntero(estr)>
+
+iNil() -> res: ABB {
+    res = <raiz: qcy constructor por default, altura: 0, izq: NULL, der: NULL>
+}
+
+iBin(izq: ABB, raiz: α, der: ABB) -> res: ABB {
+    res = <raiz: raiz, altura: 1, izq: izq, der: der>
+} NO SE QUE MIERDA HACER
+
+Ejercicio 11
+    
+un vector que cada posicion tenga la cantidad ACUMULADA de personas, entonces hago Hasta - Desde Y PAM SUMA DE RIEMANN
+
+IAB se representa con vector(nat)
+
+    Rep: estr e → bool
+    Rep(e) ≡ true <-> (pa todo i, j: nat)(0<= i < j <= long(e) =>l i-esimo(e, i) <= i-esimo(e, j))
+
+    Abs: estr e → IAB
+    Abs(<>) ≡ Comenzar
+    Abs(s◦n) ≡ TerminaDia(Abs(s), n)
+    
+1-  cantPersonas(iab, desde, hasta) -> res: nat { //ponele que se cumple la pre
+       res = iab[hasta] - iab[desde]   
+    }
+2- O(n) maestro
+3- pillo lince
+
+4- a ver tranquilamente podria iterar sobre posibles d's y quedarme con el mayor (creo?) pero dudo que sea esa la idea
+
+
+
+
