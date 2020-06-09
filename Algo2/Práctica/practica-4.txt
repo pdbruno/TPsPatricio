@@ -228,6 +228,23 @@ IAB se representa con vector(nat)
 
 4- a ver tranquilamente podria iterar sobre posibles d's y quedarme con el mayor (creo?) pero dudo que sea esa la idea
 
+Ejercicio 12
 
+opcion 1 - un vector de punteros a palabras Y un diccionario (de hash) de palabras a conjunto de posiciones y de yapa un conjunto con las palabras mas repetidas (se va calculando a medida que se insertan y cambian palabras)
+
+no se me ocurre una mejor alternativa
+Texto se representa con estr
+donde estr es tupla(posiciones: vector(puntero(palabra)), palabras: dicc(palabra, conj(nat)), masRep: conj(palabra), maxRep: nat)
+
+
+cambiarPalabra(texto, vieja, nueva){
+    conj = palabras.obtener(vieja) //O(1)
+    ItConj = CrearIt(conj) //O(1)
+    vieja = nueva //por copia, ahora el puntero apunta a la nueva O(1)
+    existeNueva = palabras.definido(nueva) //O(1)
+    if(existeNueva){
+    //khdfgarg no se me voy a dormir
+    }
+}
 
 
