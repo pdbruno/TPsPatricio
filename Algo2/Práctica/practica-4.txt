@@ -132,7 +132,7 @@ ABB //ponele que los puedo iterar con inorder
 http://www.cs.cmu.edu/afs/cs/academic/class/15210-s12/www/lectures/lecture14.pdf
 https://www.cs.cmu.edu/afs/cs/academic/class/15210-s15/www/lectures/bst-notes.pdf
 
-interseccion(in A: ABB, in B: ABB) -> res: ABB {  //es θ(n+m)
+interseccion(in A: ABB, in B: ABB) -> res: ABB {  //es θ(n+m) //en realidad egregar los elemntenos a res no es trivial
     exactamente igual que las listas ordenadas
 }
 
@@ -189,7 +189,7 @@ BorrarSignificado(clave, dic){
 
 Ejercicio 7
 ABB(α) se representa con estr
-donde estr es tupla(raiz: puntero(α))
+donde estr es puntero(nodo)
 donde nodo es tupla(dato: α, izq: puntero(nodo), der: puntero(nodo))
 
 ya esta hecho BRO JAJAJA en la practica 3 (voy a usar este)
@@ -232,19 +232,37 @@ Ejercicio 12
 
 opcion 1 - un vector de punteros a palabras Y un diccionario (de hash) de palabras a conjunto de posiciones y de yapa un conjunto con las palabras mas repetidas (se va calculando a medida que se insertan y cambian palabras)
 
+EL CONJUNTO CON LAS MAS REPETIDAS ESTA IMPLEMENTADO CON HASHÍS
+
+
 no se me ocurre una mejor alternativa
 Texto se representa con estr
-donde estr es tupla(posiciones: vector(puntero(palabra)), palabras: dicc(palabra, conj(nat)), masRep: conj(palabra), maxRep: nat)
+donde estr es tupla(posiciones: vector(puntero(palabra)), palabras: dicc(palabra, conj(nat)), masRep: conj(punteros(palabras)), maxRep: nat)
 
 
-cambiarPalabra(texto, vieja, nueva){
+cambiarPalabra(texto, palabra* vieja, nueva){ //kiherbgaierbytg con los punteros
     conj = palabras.obtener(vieja) //O(1)
     ItConj = CrearIt(conj) //O(1)
     vieja = nueva //por copia, ahora el puntero apunta a la nueva O(1)
     existeNueva = palabras.definido(nueva) //O(1)
-    if(existeNueva){
-    //khdfgarg no se me voy a dormir
-    }
+
+
+    if(existeNueva){ //tengo que insertar todas las posiciones del
+        //tengo que agregar todos los elementos del conjunto viejo al conjunto nuevo //O(k)
+        //tengo que borrar la definicion vieja en el diccionario //O(1)
+        // si el conjunto nuevo tiene la misma mcantidad de elementos que maxRep agrego la palabra //O(1)
+        // si el cardinal nuevo es mayor a max rep this.maxRep = new Conj(nuevo) //O(1) con ricos memory leaks
+    } else {
+        //crear una nueva entrada en el dicc //O(1)
+        //tengo que agregar todos los elementos del conjunto viejo al conjunto nuevo //O(k)
+        //tengo que borrar la definicion vieja en el diccionario //O(1)
+    } JAJ
 }
+
+
+Ejercicio 14
+trank, somos capos, es ez
+
+hay que usar un vector ordenado , y para el c, idem que acumule la plata
 
 
