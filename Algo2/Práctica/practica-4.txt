@@ -207,6 +207,101 @@ iBin(izq: ABB, raiz: α, der: ABB) -> res: ABB {
     res = <raiz: raiz, altura: 1, izq: izq, der: der>
 } NO SE QUE MIERDA HACER
 
+Ejercicio 8
+
+a) con arbol binario (max heap)
+
+Cola de Prioridad(α) se representa con estr
+donde estr es tupla(dato: α, izq: puntero(estr), der: puntero(estr), padre: puntero(estr))
+
+    Rep: estr e → bool
+    Rep(e) ≡ (n.padre != null =>l n.dato < n.padre.valor) ∧ (n.izq != null =>l n.dato > n.izq.valor) ∧ (n.der != null =>l n.valor > n.der.valor)
+                ∧ (n.der != null =>l n.izq != null) //y que no haya ciclos!!!!
+    
+    Abs: estr e → colaPrior
+    Abs(e) ≡ encolar(e.dato, merge(e.izq, e.der)) //me cago en los punteros, hago 3 ifs viendo cual es nulo y cual no
+
+    merge(cola1, vacia) ≡ cola1
+    merge(cola1, encolar(dato, cola2)) ≡ merge(encolar(dato, cola1), cola2) //wow hice tail recursion soy crack
+    ALGORITMOS HIJO DE PUTA
+    vacio?() //wtf!!!!
+
+    proximo(in cola: colaprio) -> res: α{
+        res = cola.dato //O(1)
+    }
+
+    desencolar(in/out cola: colaprio) -> res: α{ //encontrar el ultimo es mucho mas quilombo, se me ocurre que si tuviera la altura de cada nodo precalculada
+                                                // podria preguntar: alt(izq) > alt(der) ? voy a izq : voy a derecha y listovich
+                                                //y es logaritmico. bien pato, conste que marto estyaba pensando en algo parecio egoista de mierda la concha puta nde tu madre quiero ver como comiteas esto!! pense que no se podia :) ah re pete
+        res = cola.dato
+    }
+
+con vector(max heap)
+
+Representacion
+    Cola de Prioridad(α) se representa con estr
+        donde estr es vector(α)
+
+    Rep: estr e → bool
+    Rep(e) ≡ (∀ i: nat)((0 ≤ 2*i+1 < long(e) →ₗ e[i] > e[2*i+1]) ∧
+                        (0 ≤ 2*i+2 < long(e) →ₗ e[i] > e[2*i+2]) ) //creo jaja nose mama ayudame
+    
+    Abs: estr e → colaPrior
+    Abs(e) ≡ ConstruirColaDePrioridad(e, 0)
+
+    ConstruirColaDePrioridad(e, i) ≡   if i >= long(e) then //ponele que existe el observador •[•]
+                                        vacia
+                                    else 
+                                        encolar(e[i], merge(ConstruirColaDePrioridad(e, 2*i+1), ConstruirColaDePrioridad(e, 2*i+2)))
+                                    fi //creo jaja nose mama ayudame
+
+                    
+Algoritmos
+    proximo(in cola: colaprio) -> res: α{
+        res = cola[0]
+    }
+
+    desencolar(in/out cola: colaprio) -> res: α {
+        cola[0] = cola[longitud(cola)-1]
+        i = 0 
+        vector.TirarUltimos(1)
+        while ((2*i+1 ≤ longitud(cola) ∧ (cola[i] < cola[2*i+1]) ∨ (2*i+2 ≤ longitud(cola) ∨ cola[i] < cola[2*i+2])) {
+            if (cola[i] < cola[2*i+1]) {
+                aux = cola[i]
+                cola[i] = cola[2*i+1]
+                cola[2*i+1] = aux
+                i = 2*i+1;
+            } else {
+                aux = cola[i]
+                cola[i] = cola[2*i+2]
+                cola[2*i+2] = aux
+                i = 2*i+2;
+            }
+        }
+    }
+
+
+
+Interfaz
+Modulo Cola de prioridad
+Parametros Formales
+    generos α
+
+Se explica con TAD Cola de prioridad
+Generos colaprio
+
+Operaciones
+
+Ejercicio 9
+LISTA DOBLEMENTE ENLAZADA ORDENADA JEJOXXX
+
+Ejercicio 10
+Un arreglo de 0 a 100 con significados de conjuntos implementados diccLog o arreglos dimensionables de 100 posiviocnes(mucha memoria perdida vs O(1) eliminando)
+Lo mismo pero de 0 a n
+diccLog de conjuntos(tmb logaritmico)
+
+
+
 Ejercicio 11
     
 un vector que cada posicion tenga la cantidad ACUMULADA de personas, entonces hago Hasta - Desde Y PAM SUMA DE RIEMANN
@@ -230,18 +325,18 @@ IAB se representa con vector(nat)
 
 Ejercicio 12
 
-opcion 1 - un vector de punteros a palabras Y un diccionario (de hash) de palabras a conjunto de posiciones y de yapa un conjunto con las palabras mas repetidas (se va calculando a medida que se insertan y cambian palabras)
+opcion 1 - un vector de punteros a palabras Y un diccionario (de tries) de palabras a conjunto de posiciones y de yapa un conjunto con las palabras mas repetidas (se va calculando a medida que se insertan y cambian palabras)
 
-EL CONJUNTO CON LAS MAS REPETIDAS ESTA IMPLEMENTADO CON HASHÍS
+EL CONJUNTO CON LAS MAS REPETIDAS ESTA IMPLEMENTADO CON TRIE
 
 
 no se me ocurre una mejor alternativa
 Texto se representa con estr
-donde estr es tupla(posiciones: vector(puntero(palabra)), palabras: dicc(palabra, conj(nat)), masRep: conj(punteros(palabras)), maxRep: nat)
+donde estr es tupla(posiciones: vector(puntero(palabra)), palabras: diccTrie(palabra, conj(nat)), masRep: conj(punteros(palabras)), maxRep: nat)
 
 
 cambiarPalabra(texto, palabra* vieja, nueva){ //kiherbgaierbytg con los punteros
-    conj = palabras.obtener(vieja) //O(1)
+    conj = palabras.obtener(vieja) //O(1) pq es O(|palabra mas larga|) y esta acotada
     ItConj = CrearIt(conj) //O(1)
     vieja = nueva //por copia, ahora el puntero apunta a la nueva O(1)
     existeNueva = palabras.definido(nueva) //O(1)
