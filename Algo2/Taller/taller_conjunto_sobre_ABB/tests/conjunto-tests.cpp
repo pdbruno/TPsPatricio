@@ -131,7 +131,6 @@ TEST(conjunto_test, test_siguiente_inorder) {
     EXPECT_EQ(c.siguiente(15), 16);
     EXPECT_EQ(c.siguiente(16), 20); //los agregue yo estos
     EXPECT_EQ(c.siguiente(12), 15);
-    cout << c;
 }
 
 const int NCLAVES = 1000;

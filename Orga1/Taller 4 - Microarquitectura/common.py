@@ -80,15 +80,15 @@ def tokenizator(filename):
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 # Assembly code constants
 
-type_RR = ["ADD","ADC","SUB","AND","OR" ,"XOR","CMP","MOV", "MIX"]
+type_RR = ["ADD","ADC","SUB","AND","OR" ,"XOR","CMP","MOV"]
 type_RM = ["STR","LOAD"]
 type_M  = ["JMP","JC","JZ","JN"]
-type_R  = ["INC","DEC", "SIG", "NEG"]
+type_R  = ["INC","DEC"]
 type_RS = ["SHR","SHL"]
 type_RI = ["SET"]
 def_DB  = ["DB"]
 
-opcodes = {"ADD" : 1, "ADC" : 2, "SUB" : 3, "AND"  : 4, "OR"  : 5, "XOR" : 6, "CMP" : 7, "MOV" : 8, "SIG": 9, "NEG" : 10, "MIX" : 11,
+opcodes = {"ADD" : 1, "ADC" : 2, "SUB" : 3, "AND"  : 4, "OR"  : 5, "XOR" : 6, "CMP" : 7, "MOV" : 8,
            "STR" :16, "LOAD":17, "STRr":18, "LOADr":19,
            "JMP" :20, "JC"  :21, "JZ"  :22, "JN"   :23,
            "INC" :24, "DEC" :25, "SHR" :26, "SHL"  :27, "SET" :31}
@@ -318,13 +318,13 @@ signals={ "RB_enIn"           :  0,
           "PC_load"           : 20,
           "PC_inc"            : 21,
           "PC_enOut"          : 22,
-          "MIX_go"        : 23,
+          "RESERVED23"        : 23,
           "DE_enOutImm"       : 24,
           "DE_loadL"          : 25,
           "DE_loadH"          : 26,
-          "MIX_enOut"        : 27,
-          "MIX_enA"        : 28,
-          "MIX_enB"        : 29,
+          "RESERVED27"        : 27,
+          "RESERVED28"        : 28,
+          "RESERVED29"        : 29,
           "load_microOp"      : 30,
           "reset_microOp"     : 31 }
 
