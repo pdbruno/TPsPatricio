@@ -79,27 +79,9 @@ void string_map<T>::insert(const pair<string, T>& entrada) {
     if(current->definicion == nullptr){
         _size++;
     }
-    current->definicion = &(entrada.second);
+    current->definicion = entrada.second;
 }
 
-template <typename T>
-void string_map<T>::insert(pair<string, T>& entrada) {
-    const string& clave = entrada.first;
-    if(_raiz == nullptr){
-        _raiz = new Nodo();
-    }
-    Nodo* current = _raiz;
-    for (int i = 0; i < clave.size(); ++i) {
-        if(current->siguientes[clave[i]] == nullptr){
-            current->siguientes[clave[i]] = new Nodo();
-        }
-        current = current->siguientes[clave[i]];
-    }
-    if(current->definicion == nullptr){
-        _size++;
-    }
-    current->definicion = &(entrada.second);
-}
 
 template <typename T>
 int string_map<T>::size() const{

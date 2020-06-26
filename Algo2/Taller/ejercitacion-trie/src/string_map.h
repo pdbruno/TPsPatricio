@@ -35,7 +35,6 @@ public:
     * Inserta un par clave, valor en el diccionario
     **/
     void insert(const pair<string, T>&);
-    void insert(pair<string, T>&);
 
     /**
     COUNT

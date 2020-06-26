@@ -1,0 +1,23 @@
+guia 4
+1- en O(n) busco el maximo en vec
+en O(max) creo un arreglo dimensionable (arr) de todos 0
+en O(n) lleno ese arreglo con las frecuencias
+en nlogn ordeno el arreglo original usando como valor
+arr[vec[i]] en vez de vec[i], el acceso es contante igual
+
+2- 
+hago un arreglo auxiliar (aux) de largo raiz(n) en O(raiz n)
+recorro el arreglo una vez y agrego a aux todos los elementos fuera del rango [20, 40] en O(n)
+creo que podria insertarlos de forma ordenada, sino ordeno aux (como mucho en O(n), tambien podria ser O(log n))
+inserto en res todos los elementos de aux menores a 20 O(raiz n)
+for j=20; j<=40; j++ inserto en res j la cantidad de veces que aparezca en el array original (O(20*n))
+inserto en res todos los elementos de aux mayores a 40 O(raiz n)
+
+3- a)
+recorremos los n elementos y cada uno lo inserto en un trie (O(l)) en total, O(n*l)
+hacemos un preorder DE NUESTRO RICO TRIE en insertamos en un array en orden O(n*l) porque preorder es O(cant nodos)
+y en un trie de n claves de largo maximo l, tengo como maximo n*l nodos
+ese array lo ordeno en O(n* logn)
+
+b)
+idem y al final hacemo counting sort (que es O(n) porque el maximo esta acotado)
