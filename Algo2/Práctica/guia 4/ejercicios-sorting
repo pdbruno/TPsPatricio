@@ -21,3 +21,42 @@ ese array lo ordeno en O(n* logn)
 
 b)
 idem y al final hacemo counting sort (que es O(n) porque el maximo esta acotado)
+
+Ejercicio 4:
+Se tiene un arreglo de enteros no repetidos A[1..n], tal que se sabe que para todo i hay a lo sumo i elementos
+mas chicos que A[i] en todo el arreglo. Dar un algoritmo que ordene el arreglo en O(n).
+
+hay maximo 1 elemento mas chico que A[1] (A[1] es el mas chico o el segundo mas chico)
+hay maximo 2 elemento mas chicos que A[2] (A[2] es el mas chico o el segundo mas chico o el tercero mas chico)
+hay maximo 3 elemento mas chicos que A[3]
+.
+.
+.
+hay maximo n elemento mas chicos que A[n]
+
+mi intuicion es que hay que hacer insertion sort basicamente, y que ya va a estar ordenado excepto por un elemento.
+entonces a la primera que efectivamente hacemos una insercion, paramos
+pero no se como justificarlo
+
+si A[1] es el elemento mas chico, A[2] es el segundo o el tercero mas chico.
+    si A[2] es el segundo mas chico, A[3] es el tercero o el cuarto mas chico.
+    si A[2] es el tercero mas chico, A[3] es el segundo o el cuarto mas chico.
+
+si A[1] es el segundo mas chico, A[2] es el mas chico o el tercero mas chico.
+    si A[2] es el mas chico, A[3] es el tercero o el cuarto mas chico.
+    si A[2] es el tercero mas chico, A[3] es el mas chico o el cuarto mas chico.
+
+Ejercicio 5:
+
+a) mmm, el amigo counting sort
+b) 
+1- defino counting sort (una version estable) pero en vez de usar A[i] como indice del arreglo auxiliar "count", uso el j-esimo digito del elemento A[i] en base n
+hago countingSort(A, j=1) //lo ordeno en base a su primero digito
+hago countingSort(A, j=1) //lo ordeno en base a su segundo digito
+
+c) hago exactamente lo mismo para j desde 1 hasta k
+
+d) la complejdad es O(n * cantidad de digitos en alguna base b del mayor numero del arreglo)
+si b=2, la operacion de buscar el iesimo digito es muy simple (no se si eso hace que el algoritmo sea mejor, porque hay que hacer mas operaciones)
+
+si suponemos que el elemento mas grande es <= n^c, y usamos n como base numerica, la complejidad es O(n*c)
