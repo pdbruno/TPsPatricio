@@ -1,0 +1,84 @@
+practica 5
+ejercicio 1- quizas heapsort se vea un poco benecifiado ya que al hacer floyd para armar el max-heap, como el arreglo esta ordenado de 
+mayor a menor, es un max heap, y el algoritmo de floyd nunca va a hacer ningun sift down.
+
+ejercicio 2- utilizaria insertion sort, porque hasta que termine s´ seria tiempo lineal
+
+Ejercicio 3
+Escribir un algoritmo que encuentre los k elementos m´as chicos de un arreglo de dimensi´on n, donde k ≤ n.
+¿Cu´al es su complejidad temporal? ¿A partir de qu´e valor de k es ventajoso ordenar el arreglo entero primero?
+
+puedo hacer un selection sort k veces (creo que es O(k*n))
+o puedo hacer floyd en O(n), se convierte en un heap y desencolo los primeros k O(n + k*log(n))
+
+Ejercicio 4
+Se tiene un conjunto de n secuencias {s1, s2, . . . , sn} en donde cada si (1 ≤ i ≤ n) es una secuencia ordenada
+de naturales. ¿Qu´e m´etodo utilizar´ıa para obtener un arreglo que contenga todos los elementos de la uni´on de
+los si ordenados. Describirlo. Justificar
+
+merge(conj: conj(sec)){ //O(longitudTotal * #conj)
+    lista(itLista) listaIts = Vacia()
+    itConj = CrearIt(conj)
+    longitudTotal = 0
+    while(HaySiguiente(itConj)){
+        secu = Siguiente(itConj)
+        longitudTotal += Longitud(secu)
+        AgregarAdelante(listaIts, CrearIt(secu))
+        Avanzar(itConj)
+    }
+    arreglo(nat) res = arreglo[longitudTotal] //no me acuerdo la sintaxis
+    i=0
+    while(Longitud(listaIts) > 0){
+    
+        itLista(ItLista(nat)) ElIteradorLoco = CrearIt(listaIts)
+
+        itLista(ItLista(nat)) itMinimo = CrearIt(listaIts)
+
+        while(HaySiguiente(ElIteradorLoco)){
+            it = Siguiente(ElIteradorLoco)
+
+            if(Siguiente(it) < Siguiente(Siguiente(itMinimo))){
+                itMinimo = ElIteradorLoco //(por copia qcy)
+            }
+
+            Avanzar(ElIteradorLoco)
+        }
+
+        res[i] = Siguiente(Siguiente(itMinimo))
+        Avanzar(Siguiente(itMinimo))
+        if(!HaySiguiente(Siguiente(itMinimo))){
+            EliminarSiguiente(itMinimo)
+        }
+        i++
+    }
+}
+
+Ejercicio 6
+- en una sola iteracion identifico todas las escaleras y guardo un par <inicio, fin> en buckets segun la longitud O(n)
+- no hace falta ordenar cada bucket porque ya estan ordenados en forma creciente por por el primer valor de la escalera
+- hago un arreglo res O(n)
+- voy concatenando las escaleras de los buckets, empezando desde el ultimo bucket y terminando en el primero
+como la escalera mas larga es de n elementos, van a haber n buckets (entonces el ciclo que recorre buckets hace n iteraciones)
+dentro de cada iteracion concateno las escaleras que hay en el bucket. No obstante, sin importar cuantas escaleras o elementos hay en cada bucket, 
+al resultado final le voy a concatenar n elementos, entonces son O(n) operaciones "afuera" y O(n) operaciones en total "adentro", 
+en total O(2n) = O(n)
+
+Ejercicio 7
+- recorro la lista de n elementos (O(n)) y cada uno lo agrego al arbol (O(log n))
+en realidad inserto tuplas <elemento, cant> y si el elemento ya existe sumo 1 a cant
+le digo al arbol que vaya al elemento de mas a la izquierda, me diga el valor (para agregarlo a res) y lo elimine (si cant es 0, sino resto 1)
+
+Ejercicio 8
+no me sale
+
+Ejercicio 10
+a)
+algortimoCoso(A){
+    for(i = 1; i < A.length; i *= 2){
+        casiSort(A, i, A.length);
+    }
+    //no se me ocurre una forma eficiente de terminar de ordenar la secuencia
+    //podria hacer insertion sort empezando desde la mitad pero mmmalardo
+}
+b) kflhbrtgjahrs qcy
+c) 
