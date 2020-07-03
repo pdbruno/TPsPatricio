@@ -83,10 +83,13 @@ private:
     struct Nodo {
         vector<Nodo*> siguientes;
         T* definicion;
-        Nodo() : siguientes(256, nullptr), definicion(nullptr) { }
-        Nodo(T* def) : siguientes(256, nullptr), definicion(def) { }
-    };
+        int hijos;
+        Nodo();
+        Nodo(const T* def);
+        Nodo(const Nodo* aCopiar);
 
+    };
+    void destruir(Nodo* n);
     Nodo* _raiz;
     int _size;
 };
