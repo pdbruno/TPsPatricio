@@ -1,0 +1,79 @@
+Ejercicio 1
+esMasIzq(A, ini = 0, fin = tam(A)+1){
+    if(fin - ini = 2 ){
+        return A[ini] > A[ini+1]
+    } else {
+        int med = (ini+fin)/2
+        int sumaIzq = 0
+        for(i = ini; i < med; i++){
+            sumaIzq += A[i]
+        }
+        int sumaDer = 0
+        for(i = med; i < fin; i++){
+            sumaDer += A[i]
+        }
+        return sumaIzq > sumaDer && esMasIzq(A, med, fin) && esMasIzq(A, ini, med)
+    }
+}
+T(n) = 2T(n/2) + O(n)
+
+Ejercicio 2
+sumaPotencia(A, n){ //n=2^k //jeje sale aplicar la formula cerrada de la serie geometrica
+    if(n = 1){
+        return A
+    } else {
+        mitad = sumaPotencia(n/2)
+
+        AExpNSobre2 = potencia(A, n/2)
+
+        return (mitad * mitad) - A * [(mitad - AExpNSobre2) * (mitad - AExpNSobre2)] + A
+    } //multiplicacion, suma y resta de matrices es O(1) porque son de 4x4
+}
+
+Ejercicio 3
+<maxDistancia, altura>
+
+maxDistancia(nodo){
+    altura(nodo.izq) + altura(nodo.der)
+}
+maxDistancia(Nodo* nodo){
+    if(nodo == nullptr){
+        return <0, 0>
+    } else {
+        maxDistIzq, altIzq = maxDistancia(nodo->izq)
+        maxDistDer, altDer = maxDistancia(nodo->der)
+        maxDist = max(maxDistIzq, maxDistDer, altIzq + altDer + 1)
+        altura = max(altIzq, altDer) + 1
+        return <maxDist, altura>
+    }
+}
+
+Ejercicio 4
+el tipo del return es una tupla <cantDesorden, arregloOrdenado>
+parejasEnDesorden(A, inicio, fin){
+    if(inicio + 1 == fin){
+        return <0, [A[inicio]]>
+    } else {
+        med = (ini+fin)/2
+        desordenCruzado = 0
+        arregloOrdenado = arr[fin-inicio]
+        cantIzq, arrIzq = parejasEnDesorden(A, inicio, med)
+        cantDer, arrDer = parejasEnDesorden(A, med, fin)
+        i=0
+        j=0
+
+        for(int k=0; k < arregloOrdenado.size(); k++) {
+            if( j≥arrDer.size() || ( i<arrIzq.size() && arrIzq[i] < arrDer[j] )) {
+                arregloOrdenado[k] = arrIzq[i];
+                i++;
+            } else {
+                arregloOrdenado[k] = arrDer[j];
+                j++;
+                if(i < arrIzq.size()){
+                    desordenCruzado += arrIzq.size() - i
+                }
+            }
+        }
+        return <desordenCruzado + cantDer + cantIzq, arregloOrdenado>
+    }
+}

@@ -54,7 +54,22 @@ void string_map<T>::destruir(Nodo* n){
 
 template <typename T>
 T& string_map<T>::operator[](const string& clave){
-    // COMPLETAR
+    if(_raiz == nullptr){
+        _raiz = new Nodo();
+    }
+    Nodo* current = _raiz;
+    for (int i = 0; i < clave.size(); ++i) {
+        if(current->siguientes[clave[i]] == nullptr){
+            current->siguientes[clave[i]] = new Nodo();
+            current->hijos++;
+        }
+        current = current->siguientes[clave[i]];
+    }
+    if(current->definicion == nullptr){
+        _size++;
+        current->definicion = new T();
+    }
+    return *current->definicion;
 }
 
 
