@@ -1,0 +1,51 @@
+Practica 6
+
+Ejercicio 2
+IndexEqVal(A, inicio, fin){
+    if(inicio + 1 = fin){
+        return A[inicio] == inicio
+    } else {
+        med = ...
+        if(A[med] == med){
+            return true
+        } else if(A[med] < med){
+            return IndexEqVal(A, med, fin)
+        } else {
+            return IndexEqVal(A, inicio, med)
+        }
+        
+    }
+}
+
+Ejercicio 3
+potencia(a, b){
+    if(b == 0){
+        return 1
+    } else if(b == 1){
+        return a
+    } else {
+        rec = potencia(a, b/2) //division entera
+        if(b%2 == 0){
+            return rec*rec
+        } else {
+            return rec*rec*a
+        }
+    }
+}
+
+Ejercicio 4
+hora de mandar fruta (si el teorema maestro no aplica, estoy mandando fruta)
+T(n) = T(n − 2) + 5 O(n)
+T(n) = T(n − 1) + n O(n^2)
+T(n) = T(n − 1) + √n O(n^(3/2))
+T(n) = T(n − 1) + n^2 O(n^3)
+T(n) = 2T(n − 1) O(2^n)
+T(n) = T(n/2) + n O(n)
+T(n) = T(n/2) + √n O(√n)
+T(n) = T(n/2) + n^2 O(n^2)
+T(n) = 2T(n − 4) O(2^(n/4))
+T(n) = 2T(n/2) + log n O(log n)
+T(n) = 3T(n/4) O(n^log4(3))
+T(n) = 3T(n/4) + n O(n)
+
+Ejercicio 8
