@@ -49,3 +49,61 @@ T(n) = 3T(n/4) O(n^log4(3))
 T(n) = 3T(n/4) + n O(n)
 
 Ejercicio 8
+1. Dar un algoritmo que tome tiempo estrictamente menor que O(n^2) que calcule la posici´on de alg´un false,
+asumiendo que hay al menos uno. Calcular y justificar la complejidad del algoritmo.
+findFalse(A, inicioI, finI, inicioJ, finJ){
+    if(inicioI == finI && inicioJ == finJ){
+        return <inicioI, inicioJ>
+    } else {
+        medI = ...
+        medJ = ...
+        cuad1 = conjuncionSubmatriz(A, inicioI, medI, inicioJ, medJ)
+        cuad2 = ...
+        cuad3 = ...
+        cuad4 = ...
+        if(!cuad1){
+            return findFalse(A, inicioI, medI, inicioJ, medJ)
+        } else if(!cuad2){
+            return findFalse(A, medI, finI, inicioJ, medJ)
+        } else if(!cuad3){
+            ...
+        } else {
+            ...
+        }
+    }
+} T(n) = T(n/4) + O(1), T(n) es O(log n)
+
+2. countFalse(A, inicio, fin){ hay maximo 5 falses
+    if(inicioI == finI && inicioJ == finJ){
+        return A[inicioI, inicioJ] ? 0 : 1
+    } else {
+        res = 0
+        medI = ...
+        medJ = ...
+        if(!conjuncionSubmatriz(A, inicioI, medI, inicioJ, medJ)){
+            res += countFalse(A, inicioI, medI, inicioJ, medJ)
+        } else if(!conjuncionSubmatriz(A, medI, finI, inicioJ, medJ)){
+            res += countFalse(A, medI, finI, inicioJ, medJ)
+        } else if(!...){
+            ...
+        } else {
+            ...
+        }
+        return res
+    } un quilombo calcular la complejidad
+    decir que T(n) = 4*T(n/4) estaria mal porque no se va a dar siempre el caso
+    de que en los 4 cuadrantes hay false, de hecho va a pasar un numero acotado de veces
+    pero no se bien como calcularlo rigurosamente, me suena que sigue siendo O(log n)
+}
+Ejercicio 9
+Dados dos arreglos de naturales, ambos ordenados de manera creciente, se desea buscar, dada una posici´on i,
+el i-´esimo elemento de la uni´on de ambos. Dicho de otra forma, el i-´esimo del resultado de hacer merge ordenado
+entre ambos arreglos. Notar que no es necesario hacer el merge completo. Se puede asumir que cada natural
+aparece a lo sumo en uno de los arreglos, y a lo sumo una vez.
+a) Implementar la funci´on
+i´esimoMerge(in A: arreglo(nat), in B: arreglo(nat), in i: nat) → nat
+que resuelve el problema planteado. La funci´on debe ser de tiempo O(log2
+n), d´onde n = tam(A) = tam(B).
+b) Calcular y justificar la complejidad del algoritmo propuesto.
+c) Intente resolver el mismo problema en tiempo O(log n) (este ´ıtem es bastante mas dif´ıcil, se incluye como
+desaf´ıo adicional).
