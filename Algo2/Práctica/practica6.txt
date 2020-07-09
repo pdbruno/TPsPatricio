@@ -102,8 +102,68 @@ entre ambos arreglos. Notar que no es necesario hacer el merge completo. Se pued
 aparece a lo sumo en uno de los arreglos, y a lo sumo una vez.
 a) Implementar la funci´on
 i´esimoMerge(in A: arreglo(nat), in B: arreglo(nat), in i: nat) → nat
-que resuelve el problema planteado. La funci´on debe ser de tiempo O(log2
-n), d´onde n = tam(A) = tam(B).
+que resuelve el problema planteado. La funci´on debe ser de tiempo O(log^2(n)), d´onde n = tam(A) = tam(B).
 b) Calcular y justificar la complejidad del algoritmo propuesto.
 c) Intente resolver el mismo problema en tiempo O(log n) (este ´ıtem es bastante mas dif´ıcil, se incluye como
 desaf´ıo adicional).
+[1, 3, 7, 9, 11]
+[2, 4, 6, 8, 10]
+[1, 2, 3, 4, 6, 7, 8, 9, 11]
+
+[1, 2, 3, 4, 5]
+[7, 8, 9, 10, 11]
+
+[1, 2, 3, 4, 5, 7, 8, 9, 10, 11]
+ni idea como hacer el a) con D&Q
+a)
+iesimoMerge(A, B, i){
+    posActual = -1
+    lA = 1
+    rA = tam(A)
+    while(lA <= lB){
+        medA = (lA + rA)/2; 
+        lB = 1
+        rB = tam(A)
+        while (lB <= rB) { 
+            medB = (lB + rB)/2; 
+            if (B[medB] < A[medA]){
+                lB = medB + 1; 
+            } else {
+                rB = medB - 1; 
+            }
+        }
+        posActual = medA + medB + (B[medB] > A[medA] ? -1 : 1)
+        //creo que podria hacer directamente medA + medB - 1 
+        if (posActual < i){
+            lA = medA + 1; 
+        } else {
+            rA = medA - 1; 
+        }
+    }
+    return posActual == i ? A[posActual] : B[posActual]
+}
+b) es O de logaritmo cuadrado de n porque estoy haciendo un binarySearch adentro de un binarySearch
+creo que se puede optimizar un poco el binarySearch de adentro ajustando el seteado de lB y rB antes de entrar al while
+
+c) jej
+
+Ejercicio 10
+no se como justificarlo pero la funcion |A[i] − B[i]|, por como son A y B, es decreciente hasta que llega al mínimo y luego es creciente
+entonces dados inicio y fin, calculo med y calculo |A[med] − B[med]|, |A[med-1] − B[med-1]| y |A[med+1] − B[med+1]|
+si el menor de los 3 es con med, esa es la respuesta, si es el segundo, fin = med -1 y si es el ultimo, inicio = med + 1
+todo esto adentro de un while(inicio<=fin)
+
+Ejercicio 11
+ubicar(A, e, inicio, fin){
+    if(inicio + 1 == fin){
+        return inicio
+    } else {
+        med = ...
+        if(aparece(A, inicio, med, e)){
+            return ubicar(A, e, inicio, med)
+        } else {
+            return ubicar(A, e, med, fin)
+        }
+    }
+}
+T(n) = T(n/2) + √(n/2) = T(n/2) + O(n^(1/2)) -> T(n) es O(√n)
