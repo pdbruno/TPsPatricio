@@ -38,34 +38,31 @@
     		\For{$i\gets 1$ to $K$}				\Comment $O(K)$
     			\State $it \gets CrearIt(cardinales[i])$
     			\While{$HaySiguiente?(it)$}			\Comment $O(N)$ en total
-			 		\State $res[j]\gets *Siguiente(it)$	\Comment $O(asdasd)$
+			 		\State $res[j]\gets *Siguiente(it)$	\Comment $O(copy(Siguiente(it)))$
 			 		\State $j\gets j+1$	\Comment $O(1)$
 			 		\State $Avanzar(it)$	\Comment $O(1)$
 			 	\EndWhile
 			\EndFor \\
 			\Return $res$
 		\medskip
-		\Statex \underline{Justificación:} Las primeras dos líneas son asignaciones de enteros, $\Theta(1)$. La guarda del if es una comparación de enteros, la instrucción siguiente es una asignación de enteros (recordar que acceder a una posición de un arreglo toma tiempo constante) y el bloque del else implica evaluar el máximo entre dos enteros y asignarlo a un variable, todo esto tambíen es $\Theta(1)$. La inicialización de B toma tiempo lineal en función de su tamaño, M.
-		Si A tiene un elemento igual a n-1, estaremos en el peor caso y M tomará su mayor valor posible: n-1. El en el mejor caso, todos los elementos son 0 o mayores o iguales a n, y M valdrá 0. En el peor cado reemplazo $\Theta(M)$ por $\Theta(n)$ y en el mejor, por $\Theta(1)$
+		\Statex \underline{Justificación:} La idea es usar bucket sort, donde tengo K buckets, siendo K el mayor cardinal de todos los conjuntos en A. En cada bucket tengo una lista de punteros a los conjuntos (para evitar el costo de copia) cuyo cardinal corresponde con el índice del bucket. Voy a \textbf{suponer} que el costo de copia de un conjunto, sabiendo que tiene a lo sumo K elementos, es O(K). A continuación voy a demostrar por qué algoritmo a partir de la línea 14 tiene complejidad en peor caso de O(NK) y luego justificar la complejidad de todo el algoritmo
     \end{algorithmic}
 \end{algorithm}	
 
-$T_{mejor}(n) = \Theta (1) + \Theta (1) + \sum_{i=0}^{n} \Theta (1) +\Theta (1) + \Theta (1)$\\
- $= \Theta (1) + n \, \Theta (1)$\\
- $= \Theta (n)$\\ \\ \\
+Sea $A_i$ con $1 \leq i \leq N$ una sucesión o secuencia de conjuntos\\
+Sabemos que $\forall i / 1 \leq i \leq N$, se tiene $\#A_i \leq K$\\
+Sea $C_j$ con $0 \leq j \leq K$ una sucesión o secuencia de conjuntos tal que\\
+$C_j = \{ \; C \; | \; \exists i \in \mathbb{N} / 1 \leq i \leq N \wedge A_i = C \wedge \#A_i = j \}$ \\
+Por lo tanto $C_j$ constituye una partición de $A_i$ (hace las veces de buckets) y por lo tanto $\sum_{j=0}^{K}\#C_j = N$ \\
+Dicho esto, la complejidad a partir de la línea 14 se puede expresar de la siguiente manera: \\
+$\sum_{j=0}^{K} O(1) + \#C_j * (O(K) + O(1)) = \sum_{j=0}^{K}\#C_j * O(K) =$\\
+$O(K)\sum_{j=0}^{K}\#C_j = O(K)*N = O(NK)$
+\\\\
  
-$T_{peor}(n) = \Theta (1) + \Theta (1) + \sum_{i=0}^{n} \Theta (1) +\Theta (n) + \sum_{i=0}^{n} \sum_{j=i}^{n} \Theta (1)$\\
-$= \Theta (n) +\Theta (1) \sum_{i=0}^{n}(n-i)$ \\
-$= \Theta (n) +\Theta (1) (\sum_{i=0}^{n}n - \sum_{i=0}^{n}i)$\\
-$= \Theta (n) +\Theta (1) (n^2 - \frac{n(n+1)}{2})$\\
-$n^2 - \frac{n(n+1)}{2} = \frac{n^2}{2} - \frac{n}{2} \in \Theta (n^2)$ (*)\\
-$= \Theta (n) +\Theta (n^2)$\\
-$=\Theta (n^2)$\\ \\
-
-(*)$\frac{n^2}{2} - \frac{n}{2} \in O(n^2)$ trivialmente, ya que la primer función es siempre menor\\
-$\frac{n^2}{2} - \frac{n}{2} \in \Omega (n^2) \Leftrightarrow \exists k, n_0 \ge 0 / n\ge n_0 \Rightarrow \frac{n^2}{2} - \frac{n}{2} \ge k \, n^2$\\
-$\frac{n^2}{2} - \frac{n}{2} \ge k \, n^2 \Rightarrow  \frac{1}{2} - \frac{1}{2n} \ge k$ Tomemos $k = \frac{1}{4}$\\
-$\frac{1}{2} - \frac{1}{2n} \ge \frac{1}{4} \Rightarrow \frac{1}{4} \ge \frac{1}{2n} \Rightarrow 2 \le n$ Entonces alcanza con tomar $n_0 = 2$
+$T_{peor}(N) = O(NK) + O(K) + O(K) + \sum_{i=1}^{N}(O(1) + O(K)) + O(N) + O(1) + O(NK)$\\
+$= O(NK) + O(K) + N*O(K) + O(N) + O(1)$ \\
+$= O(max(NK, K, N, 1))$\\
+$= O(NK)$\\
 
 \begin{algorithm}[H]{obtenerMaximoCardinal(\In{A}{arreglo(ConjuntoDeNaturales)}) $\to$ $res$: nat}	
 	\begin{algorithmic}[1]
@@ -76,8 +73,7 @@ $\frac{1}{2} - \frac{1}{2n} \ge \frac{1}{4} \Rightarrow \frac{1}{4} \ge \frac{1}
 			 \EndFor \\
 			\Return $res$
 		\medskip
-		\Statex \underline{Justificación:} Las primeras dos líneas son asignaciones de enteros, $\Theta(1)$. La guarda del if es una comparación de enteros, la instrucción siguiente es una asignación de enteros (recordar que acceder a una posición de un arreglo toma tiempo constante) y el bloque del else implica evaluar el máximo entre dos enteros y asignarlo a un variable, todo esto tambíen es $\Theta(1)$. La inicialización de B toma tiempo lineal en función de su tamaño, M.
-		Si A tiene un elemento igual a n-1, estaremos en el peor caso y M tomará su mayor valor posible: n-1. El en el mejor caso, todos los elementos son 0 o mayores o iguales a n, y M valdrá 0. En el peor cado reemplazo $\Theta(M)$ por $\Theta(n)$ y en el mejor, por $\Theta(1)$
+		\Statex \underline{Justificación:} Hago una operación con complejidad temporal en peor caso perteneciente a O(K) un total de N veces, por lo tanto la complejidad final es O(NK)
     \end{algorithmic}
 \end{algorithm}	
 
@@ -93,27 +89,9 @@ $\frac{1}{2} - \frac{1}{2n} \ge \frac{1}{4} \Rightarrow \frac{1}{4} \ge \frac{1}
 			 \EndWhile \\
 			\Return $res$
 		\medskip
-		\Statex \underline{Justificación:} Las primeras dos líneas son asignaciones de enteros, $\Theta(1)$. La guarda del if es una comparación de enteros, la instrucción siguiente es una asignación de enteros (recordar que acceder a una posición de un arreglo toma tiempo constante) y el bloque del else implica evaluar el máximo entre dos enteros y asignarlo a un variable, todo esto tambíen es $\Theta(1)$. La inicialización de B toma tiempo lineal en función de su tamaño, M.
-		Si A tiene un elemento igual a n-1, estaremos en el peor caso y M tomará su mayor valor posible: n-1. El en el mejor caso, todos los elementos son 0 o mayores o iguales a n, y M valdrá 0. En el peor cado reemplazo $\Theta(M)$ por $\Theta(n)$ y en el mejor, por $\Theta(1)$
+		\Statex \underline{Justificación:} Para cada elemento en C (a lo sumo K elementos) sumo 1 a res
     \end{algorithmic}
-\end{algorithm}	
-
-$T_{mejor}(n) = \Theta (1) + \Theta (1) + \sum_{i=0}^{n} \Theta (1) +\Theta (1) + \Theta (1)$\\
- $= \Theta (1) + n \, \Theta (1)$\\
- $= \Theta (n)$\\ \\ \\
- 
-$T_{peor}(n) = \Theta (1) + \Theta (1) + \sum_{i=0}^{n} \Theta (1) +\Theta (n) + \sum_{i=0}^{n} \sum_{j=i}^{n} \Theta (1)$\\
-$= \Theta (n) +\Theta (1) \sum_{i=0}^{n}(n-i)$ \\
-$= \Theta (n) +\Theta (1) (\sum_{i=0}^{n}n - \sum_{i=0}^{n}i)$\\
-$= \Theta (n) +\Theta (1) (n^2 - \frac{n(n+1)}{2})$\\
-$n^2 - \frac{n(n+1)}{2} = \frac{n^2}{2} - \frac{n}{2} \in \Theta (n^2)$ (*)\\
-$= \Theta (n) +\Theta (n^2)$\\
-$=\Theta (n^2)$\\ \\
-
-(*)$\frac{n^2}{2} - \frac{n}{2} \in O(n^2)$ trivialmente, ya que la primer función es siempre menor\\
-$\frac{n^2}{2} - \frac{n}{2} \in \Omega (n^2) \Leftrightarrow \exists k, n_0 \ge 0 / n\ge n_0 \Rightarrow \frac{n^2}{2} - \frac{n}{2} \ge k \, n^2$\\
-$\frac{n^2}{2} - \frac{n}{2} \ge k \, n^2 \Rightarrow  \frac{1}{2} - \frac{1}{2n} \ge k$ Tomemos $k = \frac{1}{4}$\\
-$\frac{1}{2} - \frac{1}{2n} \ge \frac{1}{4} \Rightarrow \frac{1}{4} \ge \frac{1}{2n} \Rightarrow 2 \le n$ Entonces alcanza con tomar $n_0 = 2$
+\end{algorithm}
 
 \section{Dividir y Conquistar}
 \subsection{}
@@ -157,10 +135,26 @@ $\frac{1}{2} - \frac{1}{2n} \ge \frac{1}{4} \Rightarrow \frac{1}{4} \ge \frac{1}
 		\Return $<disjuntos \wedge izq.disjuntos \wedge der.disjuntos, union>$
 	
 		\medskip
-		\Statex \underline{Justificación:} Las primeras dos líneas son asignaciones de enteros, $\Theta(1)$. La guarda del if es una comparación de enteros, la instrucción siguiente es una asignación de enteros (recordar que acceder a una posición de un arreglo toma tiempo constante) y el bloque del else implica evaluar el máximo entre dos enteros y asignarlo a un variable, todo esto tambíen es $\Theta(1)$. La inicialización de B toma tiempo lineal en función de su tamaño, M.
-		Si A tiene un elemento igual a n-1, estaremos en el peor caso y M tomará su mayor valor posible: n-1. El en el mejor caso, todos los elementos son 0 o mayores o iguales a n, y M valdrá 0. En el peor cado reemplazo $\Theta(M)$ por $\Theta(n)$ y en el mejor, por $\Theta(1)$
+		\Statex \underline{Justificación:} En este esquema de Divide \& Conquer, el caso base cuesta O(M), dividir cuesta O(1) y combinar los resultados cuesta O(NM). La idea es que de cada subproblema obtengo una secuencia ordenada de naturales que representa la unión de todos los conjuntos que entraban en ese subproblema. Entonces para los dos resultados de los subproblemas, aplico el algoritmo de mergeo de secuencias ordenadas, con la particularidad de que si encuentro dos elementos iguales, ya se que los conjuntos no son disjuntos. La cantidad de elementos en la unión de los N conjuntos es N*M, entonces en cada llamado recursivo el costo de combinar ambos subproblemas implica iterar sobre esos N*M elementos para generar la nueva unión. A continuación, el cálculo de complejidad en peor caso del algoritmo.
     \end{algorithmic}
 \end{algorithm}	
+
+$T(N)= \left\{ \begin{array}{lcc}
+             2T(N/2) + O(NM) &   si  & N > 1 \\
+             \\ O(M) &  si  & N = 1
+             \end{array}
+   \right.$\\ \\
+$T(N) = 2T(\frac{N}{2}) + O(NM)\\ \\
+ = 2(2T(\frac{N}{4}) + O(\frac{N}{2}M)) + O(NM) \\ \\
+ = 2^2 T(\frac{N}{2^2}) + \sum_{j=0}^{2-1}O(\frac{N}{2^j} M)$\\ \\
+ si seguimos expandiendo queda\\ \\
+ $2^i T(\frac{N}{2^i}) + \sum_{j=0}^{i-1}O(\frac{N}{2^j} M)$\\ \\
+ hasta que $i = log_{2}(N)$. También recordemos que T(1) es O(M) \\ \\
+ $2^{log(N)} T(\frac{N}{2^{log(N)}}) + \sum_{j=0}^{log(N)-1}O(\frac{N}{2^j} M)\\ \\
+ = N T(1) + \sum_{j=0}^{log(N)-1}O(\frac{N}{2^j} M) \\ \\
+ = N * O(M) + \sum_{j=0}^{log(N)-1}O(\frac{N}{2^j} M) \\ \\
+ = O(NM) + \sum_{j=0}^{log(N)-1}O(\frac{N}{2^j} M) \leq O(NM) + \sum_{j=0}^{log(N)-1}O(NM) \\ \\ 
+ = O(NM) + (log(N) - 1)*O(NM) = (log(N) - 1 + 1) O(NM) = O(M N log(N))$
 
 
 \subsection{}
@@ -197,8 +191,7 @@ $\frac{1}{2} - \frac{1}{2n} \ge \frac{1}{4} \Rightarrow \frac{1}{4} \ge \frac{1}
 		\Return $res$
 	
 		\medskip
-		\Statex \underline{Justificación:} Las primeras dos líneas son asignaciones de enteros, $\Theta(1)$. La guarda del if es una comparación de enteros, la instrucción siguiente es una asignación de enteros (recordar que acceder a una posición de un arreglo toma tiempo constante) y el bloque del else implica evaluar el máximo entre dos enteros y asignarlo a un variable, todo esto tambíen es $\Theta(1)$. La inicialización de B toma tiempo lineal en función de su tamaño, M.
-		Si A tiene un elemento igual a n-1, estaremos en el peor caso y M tomará su mayor valor posible: n-1. El en el mejor caso, todos los elementos son 0 o mayores o iguales a n, y M valdrá 0. En el peor cado reemplazo $\Theta(M)$ por $\Theta(n)$ y en el mejor, por $\Theta(1)$
+		\Statex \underline{Justificación:} Ahora aprovecho que los elementos de los conjuntos tienen una cota para crear una suerte de registro de los elementos que van apareciendo. El algoritmo crea un arreglo de N*M de largo (la cantidad de elementos distintos) y lo lleno con falses (todo esto es O(NM)). Luego, para todos los conjuntos y para todos los elementos en cada conjunto, si ya había encontrado ese elemento entonces sé que no son disjuntos, y en caso contrario seteo el registro en true para denotar que ya está presente en la unión de conjuntos
     \end{algorithmic}
 \end{algorithm}	
 
