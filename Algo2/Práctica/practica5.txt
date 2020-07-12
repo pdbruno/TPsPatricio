@@ -82,3 +82,18 @@ algortimoCoso(A){
 }
 b) kflhbrtgjahrs qcy
 c) 
+Ejercicio 15
+el return es <tieneAgujero, min, max>
+tieneAgujero(A, inicio, fin){
+    if(inicio + 1 = fin){
+        return <false, A[inicio], A[inicio]>
+    } else {
+        med = ...
+        tieneAgujeroIzq, minIzq, maxIzq = tieneAgujero(A, inicio, med)
+        tieneAgujeroDer, minDer, maxDer = tieneAgujero(A, med, fin)
+        min = min(minIzq, minDer)
+        max = max(maxIzq, maxDer)
+        rangoCorrecto = max - min <= fin - inicio
+        return <!rangoCorrecto || tieneAgujeroDer || tieneAgujeroIzq, min, max>
+    }
+}
