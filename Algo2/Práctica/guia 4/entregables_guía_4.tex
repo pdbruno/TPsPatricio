@@ -1,0 +1,208 @@
+
+\documentclass[10pt, a4paper]{article}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{aed2-symb,aed2-itef,aed2-tad,aed2-diseno, caratula,amssymb, parskip}
+\usepackage{algorithmicx, algpseudocode, algorithm}
+
+\begin{document}
+
+
+\integrante{Bruno, Patricio Damián}{62/19}{pdbruno@gmail.com}
+\materia{Algoritmos y Estructuras de Datos II}
+\submateria{Guía 4}
+\titulo{Ejercicios obligatorios de la práctica}
+
+
+
+\maketitle
+
+\section{Ordenamiento}
+
+\begin{algorithm}[H]{sortSets(\In{A}{arreglo(ConjuntoDeNaturales))}) $\to$ $res$: arreglo(ConjuntoDeNaturales))}	
+	\begin{algorithmic}[1]
+			 \State $K \gets obtenerMaximoCardinal(A)$			\Comment $O(NK)$
+			 \State $cardinales: arreglo\_dimensionable\; de\; lista(puntero(ConjuntoDeNaturales))$
+			 \State $cardinales \gets crearArreglo(K)$			\Comment $O(K)$
+			 \For{$i\gets 1$ to $K$}			\Comment $O(K)$
+			 	\State $cardinales[i]\gets Vacia()$			\Comment $O(1)$
+			 \EndFor
+			 \For{$i\gets 1$ to $tam(A)$}			\Comment $O(N)$
+			 	\State $cardinal \gets obtenerCardinal(A[i])$			\Comment $O(K)$
+			 	\State $AgregarAtras(cardinales[cardinal], \&A[i])$			\Comment $O(1)$
+			 \EndFor
+			 \State $res: arreglo\_dimensionable\; de\; ConjuntoDeNaturales$
+			 \State $res \gets crearArreglo(tam(A))$	\Comment $O(N)$
+			 \State $j \gets 1$                    \Comment $O(1)$
+    	
+    		\For{$i\gets 1$ to $K$}				\Comment $O(K)$
+    			\State $it \gets CrearIt(cardinales[i])$
+    			\While{$HaySiguiente?(it)$}			\Comment $O(N)$ en total
+			 		\State $res[j]\gets *Siguiente(it)$	\Comment $O(asdasd)$
+			 		\State $j\gets j+1$	\Comment $O(1)$
+			 		\State $Avanzar(it)$	\Comment $O(1)$
+			 	\EndWhile
+			\EndFor \\
+			\Return $res$
+		\medskip
+		\Statex \underline{Justificación:} Las primeras dos líneas son asignaciones de enteros, $\Theta(1)$. La guarda del if es una comparación de enteros, la instrucción siguiente es una asignación de enteros (recordar que acceder a una posición de un arreglo toma tiempo constante) y el bloque del else implica evaluar el máximo entre dos enteros y asignarlo a un variable, todo esto tambíen es $\Theta(1)$. La inicialización de B toma tiempo lineal en función de su tamaño, M.
+		Si A tiene un elemento igual a n-1, estaremos en el peor caso y M tomará su mayor valor posible: n-1. El en el mejor caso, todos los elementos son 0 o mayores o iguales a n, y M valdrá 0. En el peor cado reemplazo $\Theta(M)$ por $\Theta(n)$ y en el mejor, por $\Theta(1)$
+    \end{algorithmic}
+\end{algorithm}	
+
+$T_{mejor}(n) = \Theta (1) + \Theta (1) + \sum_{i=0}^{n} \Theta (1) +\Theta (1) + \Theta (1)$\\
+ $= \Theta (1) + n \, \Theta (1)$\\
+ $= \Theta (n)$\\ \\ \\
+ 
+$T_{peor}(n) = \Theta (1) + \Theta (1) + \sum_{i=0}^{n} \Theta (1) +\Theta (n) + \sum_{i=0}^{n} \sum_{j=i}^{n} \Theta (1)$\\
+$= \Theta (n) +\Theta (1) \sum_{i=0}^{n}(n-i)$ \\
+$= \Theta (n) +\Theta (1) (\sum_{i=0}^{n}n - \sum_{i=0}^{n}i)$\\
+$= \Theta (n) +\Theta (1) (n^2 - \frac{n(n+1)}{2})$\\
+$n^2 - \frac{n(n+1)}{2} = \frac{n^2}{2} - \frac{n}{2} \in \Theta (n^2)$ (*)\\
+$= \Theta (n) +\Theta (n^2)$\\
+$=\Theta (n^2)$\\ \\
+
+(*)$\frac{n^2}{2} - \frac{n}{2} \in O(n^2)$ trivialmente, ya que la primer función es siempre menor\\
+$\frac{n^2}{2} - \frac{n}{2} \in \Omega (n^2) \Leftrightarrow \exists k, n_0 \ge 0 / n\ge n_0 \Rightarrow \frac{n^2}{2} - \frac{n}{2} \ge k \, n^2$\\
+$\frac{n^2}{2} - \frac{n}{2} \ge k \, n^2 \Rightarrow  \frac{1}{2} - \frac{1}{2n} \ge k$ Tomemos $k = \frac{1}{4}$\\
+$\frac{1}{2} - \frac{1}{2n} \ge \frac{1}{4} \Rightarrow \frac{1}{4} \ge \frac{1}{2n} \Rightarrow 2 \le n$ Entonces alcanza con tomar $n_0 = 2$
+
+\begin{algorithm}[H]{obtenerMaximoCardinal(\In{A}{arreglo(ConjuntoDeNaturales)}) $\to$ $res$: nat}	
+	\begin{algorithmic}[1]
+			 \State $res \gets -1$			\Comment $O(1)$
+			 \For{$i\gets 1$ to $tam(A)$}			\Comment $O(N)$
+			 	\State $card\gets obtenerCardinal(A[i])$			\Comment $O(K)$
+			 	\State $res\gets max(res, card)$			\Comment $O(1)$
+			 \EndFor \\
+			\Return $res$
+		\medskip
+		\Statex \underline{Justificación:} Las primeras dos líneas son asignaciones de enteros, $\Theta(1)$. La guarda del if es una comparación de enteros, la instrucción siguiente es una asignación de enteros (recordar que acceder a una posición de un arreglo toma tiempo constante) y el bloque del else implica evaluar el máximo entre dos enteros y asignarlo a un variable, todo esto tambíen es $\Theta(1)$. La inicialización de B toma tiempo lineal en función de su tamaño, M.
+		Si A tiene un elemento igual a n-1, estaremos en el peor caso y M tomará su mayor valor posible: n-1. El en el mejor caso, todos los elementos son 0 o mayores o iguales a n, y M valdrá 0. En el peor cado reemplazo $\Theta(M)$ por $\Theta(n)$ y en el mejor, por $\Theta(1)$
+    \end{algorithmic}
+\end{algorithm}	
+
+
+
+\begin{algorithm}[H]{obtenerCardinal(\In{C}{ConjuntoDeNaturales}) $\to$ $res$: nat}	
+	\begin{algorithmic}[1]
+			\State $res \gets 0$			\Comment $O(1)$
+    		\State $it \gets CrearIt(C)$	\Comment $O(1)$
+    		\While{$HaySiguiente?(it)$}			\Comment $O(K)$
+			 	\State $res[j]\gets res+1$	\Comment $O(1)$
+			 	\State $Avanzar(it)$	\Comment $O(1)$
+			 \EndWhile \\
+			\Return $res$
+		\medskip
+		\Statex \underline{Justificación:} Las primeras dos líneas son asignaciones de enteros, $\Theta(1)$. La guarda del if es una comparación de enteros, la instrucción siguiente es una asignación de enteros (recordar que acceder a una posición de un arreglo toma tiempo constante) y el bloque del else implica evaluar el máximo entre dos enteros y asignarlo a un variable, todo esto tambíen es $\Theta(1)$. La inicialización de B toma tiempo lineal en función de su tamaño, M.
+		Si A tiene un elemento igual a n-1, estaremos en el peor caso y M tomará su mayor valor posible: n-1. El en el mejor caso, todos los elementos son 0 o mayores o iguales a n, y M valdrá 0. En el peor cado reemplazo $\Theta(M)$ por $\Theta(n)$ y en el mejor, por $\Theta(1)$
+    \end{algorithmic}
+\end{algorithm}	
+
+$T_{mejor}(n) = \Theta (1) + \Theta (1) + \sum_{i=0}^{n} \Theta (1) +\Theta (1) + \Theta (1)$\\
+ $= \Theta (1) + n \, \Theta (1)$\\
+ $= \Theta (n)$\\ \\ \\
+ 
+$T_{peor}(n) = \Theta (1) + \Theta (1) + \sum_{i=0}^{n} \Theta (1) +\Theta (n) + \sum_{i=0}^{n} \sum_{j=i}^{n} \Theta (1)$\\
+$= \Theta (n) +\Theta (1) \sum_{i=0}^{n}(n-i)$ \\
+$= \Theta (n) +\Theta (1) (\sum_{i=0}^{n}n - \sum_{i=0}^{n}i)$\\
+$= \Theta (n) +\Theta (1) (n^2 - \frac{n(n+1)}{2})$\\
+$n^2 - \frac{n(n+1)}{2} = \frac{n^2}{2} - \frac{n}{2} \in \Theta (n^2)$ (*)\\
+$= \Theta (n) +\Theta (n^2)$\\
+$=\Theta (n^2)$\\ \\
+
+(*)$\frac{n^2}{2} - \frac{n}{2} \in O(n^2)$ trivialmente, ya que la primer función es siempre menor\\
+$\frac{n^2}{2} - \frac{n}{2} \in \Omega (n^2) \Leftrightarrow \exists k, n_0 \ge 0 / n\ge n_0 \Rightarrow \frac{n^2}{2} - \frac{n}{2} \ge k \, n^2$\\
+$\frac{n^2}{2} - \frac{n}{2} \ge k \, n^2 \Rightarrow  \frac{1}{2} - \frac{1}{2n} \ge k$ Tomemos $k = \frac{1}{4}$\\
+$\frac{1}{2} - \frac{1}{2n} \ge \frac{1}{4} \Rightarrow \frac{1}{4} \ge \frac{1}{2n} \Rightarrow 2 \le n$ Entonces alcanza con tomar $n_0 = 2$
+
+\section{Dividir y Conquistar}
+\subsection{}
+
+\begin{algorithm}[H]{sonDisjuntos(\In{C}{arreglo(ConjuntoDeNaturales)}) $\to$ $res$: bool}	
+	\begin{algorithmic}[1]
+		\State $res \gets sonDisjuntosRec(C, 1, tam(C))$\\
+		\Return $res.sonDisjuntos$
+    \end{algorithmic}
+\end{algorithm}	
+
+\begin{algorithm}[H]{sonDisjuntosRec(\In{C}{arreglo(ConjuntoDeNaturales)}, \In{inicio}{nat}, \In{fin}{nat}) $\to$ $res$: $<sonDisuntos: bool, union: arreglo/lista de naturales>$}	
+	\begin{algorithmic}[1]
+		\If{$fin - inicio = 1$}					\Comment $O(1)$
+			\State $hacer la cosa$			\Comment $O(1)$\\
+			\Return $<true, cosa>$
+		\Else
+			\State $med \gets (inicio + fin)/2$	\Comment $O(1)$
+			\State $izq \gets sonDisjuntosRec(C, inicio, med)$	\Comment $O(T(n/2))$
+			\State $der \gets sonDisjuntosRec(C, med, fin)$	\Comment $O(T(n/2))$
+			\State $disjuntos \gets true$	\Comment $O(1)$
+			\State $union: arreglo\_dimensionable\; de\; ConjuntoDeNaturales$
+			\State $union \gets crearArreglo(tam(der.union) + tam(izq.union))$	\Comment $O(N*M)$
+			\State $i, j, k \gets 1$	\Comment $O(1)$
+			\While{$k \leq tam(union) \wedge disjuntos$}			\Comment $O(N*M)$
+				\If{$i \leq tam(izq.union) \wedge j \leq tam(der.union) \wedge izq.union[i] = der.union[j]$}
+				\State $disjuntos \gets false$	\Comment $O(1)$
+				\EndIf \\
+				\Comment el resto es el algoritmo clásico de merge de arreglos
+				\If{$j > tam(der.union) \vee (i \leq tam(izq.union) \wedge izq.union[i] < der.union[j])$}
+					\State $union[k] \gets izq.union[i]$	\Comment $O(1)$
+					\State $i \gets i+1$	\Comment $O(1)$
+				\Else
+					\State $union[k] \gets der.union[j]$	\Comment $O(1)$
+					\State $j \gets j+1$	\Comment $O(1)$
+				\EndIf
+			 	\State $k\gets k+1$			\Comment $O(1)$		 	
+			\EndWhile \\
+			
+		\EndIf	\\
+		\Return $<disjuntos \wedge izq.disjuntos \wedge der.disjuntos, union>$
+	
+		\medskip
+		\Statex \underline{Justificación:} Las primeras dos líneas son asignaciones de enteros, $\Theta(1)$. La guarda del if es una comparación de enteros, la instrucción siguiente es una asignación de enteros (recordar que acceder a una posición de un arreglo toma tiempo constante) y el bloque del else implica evaluar el máximo entre dos enteros y asignarlo a un variable, todo esto tambíen es $\Theta(1)$. La inicialización de B toma tiempo lineal en función de su tamaño, M.
+		Si A tiene un elemento igual a n-1, estaremos en el peor caso y M tomará su mayor valor posible: n-1. El en el mejor caso, todos los elementos son 0 o mayores o iguales a n, y M valdrá 0. En el peor cado reemplazo $\Theta(M)$ por $\Theta(n)$ y en el mejor, por $\Theta(1)$
+    \end{algorithmic}
+\end{algorithm}	
+
+
+\subsection{}
+
+\begin{algorithm}[H]{sonDisjuntos(\In{C}{arreglo(ConjuntoDeNaturales)}) $\to$ $res$: bool}	
+	\begin{algorithmic}[1]
+		\State $elementos: arreglo\_dimensionable\; de\; bool$
+		\State $M \gets obtenerCardinal(C[1])$			\Comment $O(M)$		
+		\State $elementos \gets crearArreglo(tam(C) * M))$	\Comment $O(N*M)$
+		
+		\For{$i\gets 1$ to $tam(elementos)$}			\Comment $O(N*M)$
+			 \State $elementos[i] \gets false$			\Comment $O(1)$
+		\EndFor
+		
+		\State $res \gets true$			\Comment $O(1)$
+		
+		\State $i \gets 1$	\Comment $O(1)$
+		\While{$i \leq tam(C) \wedge res$}			\Comment $O(N)$
+			\State $it \gets CrearIt(C[i])$	\Comment $O(1)$
+			\While{$HaySiguiente?(it) \wedge res$}			\Comment $O(M)$
+				\State $elem \gets Siguiente(it)$			\Comment $O(1)$	
+				\If{$elementos[elem]$} 			\Comment $O(1)$	
+					\State $res \gets false$	\Comment $O(1)$
+				\Else
+					\State $elementos[elem] \gets true$	\Comment $O(1)$
+				\EndIf
+
+				\State $Avanzar(it)$			\Comment $O(1)$		 	
+			\EndWhile
+
+			\State $i\gets i+1$			\Comment $O(1)$		 	
+		\EndWhile \\
+		
+		\Return $res$
+	
+		\medskip
+		\Statex \underline{Justificación:} Las primeras dos líneas son asignaciones de enteros, $\Theta(1)$. La guarda del if es una comparación de enteros, la instrucción siguiente es una asignación de enteros (recordar que acceder a una posición de un arreglo toma tiempo constante) y el bloque del else implica evaluar el máximo entre dos enteros y asignarlo a un variable, todo esto tambíen es $\Theta(1)$. La inicialización de B toma tiempo lineal en función de su tamaño, M.
+		Si A tiene un elemento igual a n-1, estaremos en el peor caso y M tomará su mayor valor posible: n-1. El en el mejor caso, todos los elementos son 0 o mayores o iguales a n, y M valdrá 0. En el peor cado reemplazo $\Theta(M)$ por $\Theta(n)$ y en el mejor, por $\Theta(1)$
+    \end{algorithmic}
+\end{algorithm}	
+
+
+
+
+\end{document}

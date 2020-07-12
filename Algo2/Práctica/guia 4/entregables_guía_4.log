@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.5.28)  12 JUL 2020 10:27
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.5.28)  12 JUL 2020 13:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**entregables_guía_2.tex
-(./entregables_guía_2.tex
+**entregables_guía_4.tex
+(./entregables_guía_4.tex
 LaTeX2e <2020-02-02> patch level 2
 L3 programming layer <2020-02-14>
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
@@ -269,11 +269,11 @@ File: l3backend-pdfmode.def 2020-02-03 L3 backend support: PDF mode
 \l__kernel_color_stack_int=\count271
 \l__pdf_internal_box=\box50
 )
-(./entregables_guía_2.aux
+(./entregables_guía_4.aux
 LaTeX Info: Redefining \. on input line 7.
 LaTeX Info: Redefining \% on input line 7.
 )
-\openout1 = `entregables_guía_2.aux'.
+\openout1 = `entregables_guía_4.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 8.
 LaTeX Font Info:    ... okay on input line 8.
@@ -305,225 +305,97 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 25--27
+Underfull \hbox (badness 10000) in paragraph at lines 22--23
+[]\OT1/cmr/m/n/10 sortSets(\OT1/cmr/bx/n/10 in $\OML/cmm/m/it/10 A$\OT1/cmr/m/n
+/10 : \OT1/cmtt/m/n/10 arreglo(ConjuntoDeNaturales))\OT1/cmr/m/n/10 ) $\OMS/cms
+y/m/n/10 !$ $\OML/cmm/m/it/10 res$\OT1/cmr/m/n/10 : arre-
+ []
+
+
+Overfull \hbox (16.95277pt too wide) in paragraph at lines 25--26
+[]$\OML/cmm/m/it/10 cardinales \OT1/cmr/m/n/10 : \OML/cmm/m/it/10 arreglo[]dime
+nsionable de lista\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 puntero\OT1/cmr/m/n/10 (\OM
+L/cmm/m/it/10 ConjuntoDeNaturales\OT1/cmr/m/n/10 ))$ 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 53--56
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 29--38
+Underfull \hbox (badness 10000) in paragraph at lines 53--56
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 29--38
+Underfull \hbox (badness 10000) in paragraph at lines 53--56
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 29--38
+Underfull \hbox (badness 10000) in paragraph at lines 57--64
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 29--38
+Underfull \hbox (badness 10000) in paragraph at lines 57--64
+
+ []
+
+[2] [3]
+Underfull \hbox (badness 10000) in paragraph at lines 101--104
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 29--38
+Underfull \hbox (badness 10000) in paragraph at lines 101--104
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 29--38
+Underfull \hbox (badness 10000) in paragraph at lines 101--104
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 29--38
+Underfull \hbox (badness 10000) in paragraph at lines 105--112
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 29--38
+Underfull \hbox (badness 10000) in paragraph at lines 105--112
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 29--38
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 41--43
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 41--43
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 41--43
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 44--46
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 49--51
-
- []
-
-[2]
-Underfull \hbox (badness 10000) in paragraph at lines 56--60
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 56--60
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 56--60
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 62--63
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 64--67
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 64--67
-
- []
-
-[3]
-Underfull \hbox (badness 10000) in paragraph at lines 70--74
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 70--74
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 70--74
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 104--107
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 104--107
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 104--107
-
- []
-
-[4]
-Underfull \hbox (badness 10000) in paragraph at lines 108--115
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 108--115
-
- []
-
-[5]
-Underfull \hbox (badness 10000) in paragraph at lines 136--151
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 136--151
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 136--151
-
- []
-
-LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 1
-62.
-(/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
-File: omscmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 162.
-
-Overfull \hbox (40.92024pt too wide) in paragraph at lines 162--163
-[]\OT1/cmr/m/n/10 Abs($\OML/cmm/m/it/10 e$\OT1/cmr/m/n/10 ) $=[]$ ed: edi-tor $
-\OMS/cmsy/m/n/10 j$ $\OT1/cmr/m/n/10 #\OML/cmm/m/it/10 pesta[]as\OT1/cmr/m/n/10
- (\OML/cmm/m/it/10 ed\OT1/cmr/m/n/10 ) = #\OML/cmm/m/it/10 e:inactivasVacias \O
-T1/cmr/m/n/10 + #\OML/cmm/m/it/10 e:inactivasNoVacias \OT1/cmr/m/n/10 +
- []
-
-
-Overfull \hbox (31.48589pt too wide) in paragraph at lines 162--163
-\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 t \OMS/cmsy/m/n/10 2 \OML/cmm/m/it/10 e:inact
-ivasNoVacias \OMS/cmsy/m/n/10 ) \OML/cmm/m/it/10 texto\OT1/cmr/m/n/10 (\OML/cmm
-/m/it/10 ed; t:nro\OT1/cmr/m/n/10 ) = \OML/cmm/m/it/10 t:contenido\OT1/cmr/m/n/
-10 )) \OMS/cmsy/m/n/10 ^
- []
-
-
-Overfull \hbox (6.08507pt too wide) in paragraph at lines 162--163
-\OML/cmm/m/it/10 texto\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 ed; e:seleccionada\OT1/
-cmr/m/n/10 ) = \OML/cmm/m/it/10 e:anteriores\OT1/cmr/m/n/10 &\OML/cmm/m/it/10 e
-:posteriores \OMS/cmsy/m/n/10 ^
- []
-
-[6] (./entregables_guía_2.aux
+[4] [5] [6] [7] (./entregables_guía_4.aux
 LaTeX Info: Redefining \. on input line 7.
 LaTeX Info: Redefining \% on input line 7.
 ) ) 
 Here is how much of TeX's memory you used:
- 4553 strings out of 483007
- 61769 string characters out of 5961757
- 319488 words of memory out of 5000000
- 19518 multiletter control sequences out of 15000+600000
+ 4536 strings out of 483007
+ 61510 string characters out of 5961757
+ 326488 words of memory out of 5000000
+ 19504 multiletter control sequences out of 15000+600000
  536628 words of font info for 41 fonts, out of 8000000 for 9000
  107 hyphenation exceptions out of 8191
- 38i,10n,41p,857b,361s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,7n,41p,857b,361s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></u
 sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/sha
 re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/tex
 live/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/font
-s/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
-8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/s
-hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/t
-exlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on entregables_guía_2.pdf (6 pages, 174989 bytes).
+exmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/font
+s/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
+10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb
+>
+Output written on entregables_guía_4.pdf (7 pages, 152063 bytes).
 PDF statistics:
- 83 PDF objects out of 1000 (max. 8388607)
- 59 compressed objects within 1 object stream
+ 76 PDF objects out of 1000 (max. 8388607)
+ 54 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
