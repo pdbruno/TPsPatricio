@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.5.28)  12 JUL 2020 19:52
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.5.28)  12 JUL 2020 21:49
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -334,14 +334,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 62--66
  []
 
 [2]
-Underfull \hbox (badness 10000) in paragraph at lines 125--126
+Underfull \hbox (badness 10000) in paragraph at lines 124--125
 [] \OT1/cmr/bx/n/10 if $\OML/cmm/m/it/10 HaySiguiente\OT1/cmr/m/n/10 ?(\OML/cmm
 /m/it/10 itIzq\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^ \OML/cmm/m/it/10 HaySiguient
 e\OT1/cmr/m/n/10 ?(\OML/cmm/m/it/10 itDer\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 129--130
+Underfull \hbox (badness 10000) in paragraph at lines 128--129
 [] \OT1/cmr/bx/n/10 if $\OMS/cmsy/m/n/10 :\OML/cmm/m/it/10 HaySiguiente\OT1/cmr
 /m/n/10 ?(\OML/cmm/m/it/10 itDer\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 _ \OT1/cmr/m
 /n/10 (\OML/cmm/m/it/10 HaySiguiente\OT1/cmr/m/n/10 ?(\OML/cmm/m/it/10 itIzq\OT
@@ -349,27 +349,27 @@ Underfull \hbox (badness 10000) in paragraph at lines 129--130
  []
 
 [3]
-Underfull \hbox (badness 10000) in paragraph at lines 147--163
+Underfull \hbox (badness 10000) in paragraph at lines 146--162
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 147--163
+Underfull \hbox (badness 10000) in paragraph at lines 146--162
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 147--163
+Underfull \hbox (badness 10000) in paragraph at lines 146--162
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 147--163
+Underfull \hbox (badness 10000) in paragraph at lines 146--162
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 147--163
+Underfull \hbox (badness 10000) in paragraph at lines 146--162
 
  []
 
@@ -399,7 +399,7 @@ s/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/s
 hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/t
 exlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on entregables_guía_4.pdf (6 pages, 169845 bytes).
+Output written on entregables_guía_4.pdf (6 pages, 169492 bytes).
 PDF statistics:
  83 PDF objects out of 1000 (max. 8388607)
  59 compressed objects within 1 object stream

@@ -84,7 +84,7 @@ $= O(NK)$\\
 			\State $res \gets 0$			\Comment $O(1)$
     		\State $it \gets CrearIt(C)$	\Comment $O(1)$
     		\While{$HaySiguiente?(it)$}			\Comment $O(K)$
-			 	\State $res[j]\gets res+1$	\Comment $O(1)$
+			 	\State $res\gets res+1$	\Comment $O(1)$
 			 	\State $Avanzar(it)$	\Comment $O(1)$
 			 \EndWhile \\
 			\Return $res$
@@ -117,7 +117,6 @@ $= O(NK)$\\
 			\State $der \gets sonDisjuntosRec(C, med, fin)$	\Comment $O(T(n/2))$
 			\State $disjuntos \gets true$	\Comment $O(1)$
 			\State $listaUnion \gets Vacia()$	\Comment $O(1)$
-			\State $i, j, k \gets 1$	\Comment $O(1)$
 			\State $itIzq \gets CrearIt(izq.union)$	\Comment $O(1)$
 			\State $itDer \gets CrearIt(der.union)$	\Comment $O(1)$
 			
@@ -140,7 +139,7 @@ $= O(NK)$\\
 		\Return $<disjuntos \wedge izq.disjuntos \wedge der.disjuntos, listaUnion>$
 	
 		\medskip
-		\Statex \underline{Justificación:} En este esquema de Divide \& Conquer, el caso base cuesta O(M), dividir cuesta O(1) y combinar los resultados cuesta O(NM). La idea es que de cada subproblema obtengo una lista ordenada de naturales que representa la unión de todos los conjuntos que entraban en ese subproblema. Entonces para los dos resultados de los subproblemas, aplico el algoritmo de mergeo de secuencias ordenadas, con la particularidad de que si encuentro dos elementos iguales, ya se que los conjuntos no son disjuntos. La cantidad de elementos en la unión de los N conjuntos es N*M, entonces en cada llamado recursivo el costo de combinar ambos subproblemas implica iterar sobre esos N*M elementos para generar la nueva unión. A continuación, el cálculo de complejidad en peor caso del algoritmo.
+		\Statex \underline{Justificación:} En este esquema de Divide \& Conquer, el caso base cuesta O(M), dividir cuesta O(1) y combinar los resultados cuesta O(NM). La idea es que de cada subproblema obtengo una lista ordenada de naturales que representa la unión de todos los conjuntos que entraban en ese subproblema. Entonces para los dos resultados de los subproblemas, aplico el algoritmo de mergeo de secuencias ordenadas, con la salvedad de que si encuentro dos elementos iguales, ya se que los conjuntos no son disjuntos. La cantidad de elementos en la unión de los N conjuntos es N*M, entonces en cada llamado recursivo el costo de combinar ambos subproblemas implica iterar sobre esos N*M elementos para generar la nueva unión. A continuación, el cálculo de complejidad en peor caso del algoritmo.
     \end{algorithmic}
 \end{algorithm}	
 
