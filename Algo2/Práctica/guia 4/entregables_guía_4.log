@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.5.28)  12 JUL 2020 21:49
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.5.28)  13 JUL 2020 21:30
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -329,11 +329,16 @@ Underfull \hbox (badness 10000) in paragraph at lines 52--61
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 62--66
+Underfull \hbox (badness 10000) in paragraph at lines 52--61
 
  []
 
 [2]
+Underfull \hbox (badness 10000) in paragraph at lines 62--66
+
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 124--125
 [] \OT1/cmr/bx/n/10 if $\OML/cmm/m/it/10 HaySiguiente\OT1/cmr/m/n/10 ?(\OML/cmm
 /m/it/10 itIzq\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^ \OML/cmm/m/it/10 HaySiguient
@@ -378,13 +383,13 @@ LaTeX Info: Redefining \. on input line 7.
 LaTeX Info: Redefining \% on input line 7.
 ) ) 
 Here is how much of TeX's memory you used:
- 4537 strings out of 483007
- 61523 string characters out of 5961757
+ 4539 strings out of 483007
+ 61539 string characters out of 5961757
  324488 words of memory out of 5000000
- 19505 multiletter control sequences out of 15000+600000
+ 19507 multiletter control sequences out of 15000+600000
  536628 words of font info for 41 fonts, out of 8000000 for 9000
  107 hyphenation exceptions out of 8191
- 38i,8n,41p,857b,361s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,8n,41p,1063b,361s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></u
 sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/sha
 re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/tex
@@ -399,7 +404,7 @@ s/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/s
 hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/t
 exlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on entregables_guía_4.pdf (6 pages, 169492 bytes).
+Output written on entregables_guía_4.pdf (6 pages, 170200 bytes).
 PDF statistics:
  83 PDF objects out of 1000 (max. 8388607)
  59 compressed objects within 1 object stream

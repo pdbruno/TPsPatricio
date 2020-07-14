@@ -23,19 +23,19 @@
 	\begin{algorithmic}[1]
 			 \State $K \gets obtenerMaximoCardinal(A)$			\Comment $O(NK)$
 			 \State $cardinales: arreglo\_dimensionable\; de\; lista(puntero(ConjuntoDeNaturales))$
-			 \State $cardinales \gets crearArreglo(K)$			\Comment $O(K)$
-			 \For{$i\gets 1$ to $K$}			\Comment $O(K)$
+			 \State $cardinales \gets crearArreglo(K + 1)$			\Comment $O(K)$
+			 \For{$i\gets 1$ to $K+1$}			\Comment $O(K)$
 			 	\State $cardinales[i]\gets Vacia()$			\Comment $O(1)$
 			 \EndFor
 			 \For{$i\gets 1$ to $tam(A)$}			\Comment $O(N)$
 			 	\State $cardinal \gets obtenerCardinal(A[i])$			\Comment $O(K)$
-			 	\State $AgregarAtras(cardinales[cardinal], \&A[i])$			\Comment $O(1)$
+			 	\State $AgregarAtras(cardinales[cardinal] + 1, \&A[i])$			\Comment $O(1)$
 			 \EndFor
 			 \State $res: arreglo\_dimensionable\; de\; ConjuntoDeNaturales$
 			 \State $res \gets crearArreglo(tam(A))$	\Comment $O(N)$
 			 \State $j \gets 1$                    \Comment $O(1)$
     	
-    		\For{$i\gets 1$ to $K$}				\Comment $O(K)$
+    		\For{$i\gets 1$ to $K+1$}				\Comment $O(K)$
     			\State $it \gets CrearIt(cardinales[i])$
     			\While{$HaySiguiente?(it)$}			\Comment $O(N)$ en total
 			 		\State $res[j]\gets *Siguiente(it)$	\Comment $O(copy(Siguiente(it)))$
@@ -45,7 +45,7 @@
 			\EndFor \\
 			\Return $res$
 		\medskip
-		\Statex \underline{Justificación:} La idea es usar bucket sort, donde tengo K buckets, siendo K el mayor cardinal de todos los conjuntos en A. En cada bucket tengo una lista de punteros a los conjuntos (para evitar el costo de copia) cuyo cardinal corresponde con el índice del bucket. Voy a \textbf{suponer} que el costo de copia de un conjunto, sabiendo que tiene a lo sumo K elementos, es O(K). A continuación voy a demostrar por qué algoritmo a partir de la línea 14 tiene complejidad en peor caso de O(NK) y luego justificar la complejidad de todo el algoritmo
+		\Statex \underline{Justificación:} La idea es usar bucket sort, donde tengo K+1 buckets, siendo K el mayor cardinal de todos los conjuntos en A (el corrimiento se debe a que deben entrar cardinales entre 0 y K en un arreglo cuya indexación comienza en 1 ). En cada bucket tengo una lista de punteros a los conjuntos (para evitar el costo de copia) cuyo cardinal corresponde con el índice del bucket. Voy a \textbf{suponer} que el costo de copia de un conjunto, sabiendo que tiene a lo sumo K elementos, es O(K). A continuación voy a demostrar por qué el algoritmo a partir de la línea 14 tiene complejidad en peor caso de O(NK) y luego justificar la complejidad de todo el algoritmo. Notar que si un conjunto está contenido en otro, entonces su cardinal es menor, y con ese dato alcanza para ordenarlos según lo que pide la consigna. La última aclaración es que en este algoritmo y en los demás uso la sintaxis de declaración e inicialización de arreglos que aparece en el módulo de diseño de la cátedra
     \end{algorithmic}
 \end{algorithm}	
 
@@ -53,7 +53,7 @@ Sea $A_i$ con $1 \leq i \leq N$ una sucesión o secuencia de conjuntos\\
 Sabemos que $\forall i / 1 \leq i \leq N$, se tiene $\#A_i \leq K$\\
 Sea $C_j$ con $0 \leq j \leq K$ una sucesión o secuencia de conjuntos tal que\\
 $C_j = \{ \; C \; | \; \exists i \in \mathbb{N} / 1 \leq i \leq N \wedge A_i = C \wedge \#A_i = j \}$ \\
-Por lo tanto $C_j$ constituye una partición de $A_i$ (hace las veces de buckets) y por lo tanto $\sum_{j=0}^{K}\#C_j = N$ \\
+Por lo tanto $C_j$ constituye una partición de $A_i$ (hace las veces de buckets) y por lo tanto $\sum_{j=0}^{K}\#C_j = N$ \\ \\
 Dicho esto, la complejidad a partir de la línea 14 se puede expresar de la siguiente manera: \\
 $\sum_{j=0}^{K} O(1) + \#C_j * (O(K) + O(1)) = \sum_{j=0}^{K}\#C_j * O(K) =$\\
 $O(K)\sum_{j=0}^{K}\#C_j = O(K)*N = O(NK)$
