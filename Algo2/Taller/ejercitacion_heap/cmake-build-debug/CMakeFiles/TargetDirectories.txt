@@ -1,0 +1,6 @@
+/home/pato/TPsPatricio/Algo2/Taller/ejercitacion_heap/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/pato/TPsPatricio/Algo2/Taller/ejercitacion_heap/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/pato/TPsPatricio/Algo2/Taller/ejercitacion_heap/cmake-build-debug/CMakeFiles/gtest.dir
+/home/pato/TPsPatricio/Algo2/Taller/ejercitacion_heap/cmake-build-debug/CMakeFiles/correrTests.dir
+/home/pato/TPsPatricio/Algo2/Taller/ejercitacion_heap/cmake-build-debug/CMakeFiles/gtest_main.dir
+/home/pato/TPsPatricio/Algo2/Taller/ejercitacion_heap/cmake-build-debug/CMakeFiles/correrValgrind.dir

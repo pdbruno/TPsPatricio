@@ -10,7 +10,8 @@ using namespace std;
 template<class T>
 class ColaPrior {
 public:
-	ColaPrior();
+    ColaPrior();
+    ~ColaPrior();
 
 	// Cantidad de elementos en la cola.
 	int tam() const;
@@ -36,7 +37,10 @@ public:
 	ColaPrior(const vector<T>& elems);
 
 private:
-	// COMPLETAR
+	vector<T>* arr;
+    int hijoIzq(int i);
+    int hijoDer(int i);
+    int padre(int i);
 };
 
 #include "ColaPrior.hpp"
