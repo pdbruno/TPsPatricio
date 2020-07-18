@@ -97,3 +97,60 @@ tieneAgujero(A, inicio, fin){
         return <!rangoCorrecto || tieneAgujeroDer || tieneAgujeroIzq, min, max>
     }
 }
+
+ejercicios pendientes
+Ejercicio 8
+2. Suponiendo que todos los elementos de B se encuentran en A, escriba un algoritmo para obtener C que
+tenga complejidad temporal O(n + n'(log(n') + m)) en el peor caso y que utilice solamente arreglos como
+estructuras auxiliares. Justifique la complejidad de su algoritmo.
+
+coso(A, B){
+    recorro A y armo un arreglo aux con tuplas <elem, rep> (O(n))
+    recorro B, y por cada elemento busco su aparicion en aux y sumo 1 a rep (O(n' * m))
+    recorro aux y expando cada tupla rep veces (O(m + n))
+}
+
+Ejercicio 10
+Suponer que se tiene un hipot´etico algoritmo de “casi” ordenamiento casiSort que dado un arreglo A de
+n elementos, ordena n/2 elementos arbitrarios coloc´andolos en la mitad izquierda del arreglo A[1 . . . n/2]. Los
+elementos no ordenados de A se colocan en la mitad derecha A[n/2 + 1 . . . n].
+1. Describir un algoritmo de ordenamiento para arreglos de n elementos (con n potencia de 2) utilizando el
+algoritmo casiSort.
+2. Obtener la complejidad temporal en el peor caso del algoritmo dado en el punto anterior, suponiendo que
+casiSort tiene complejidad temporal Θ(n).
+3. Cree que es posible dise˜nar un algoritmo para casiSort que realice O(n) comparaciones en el peor caso?
+Justifique su respuesta.
+
+sort(A){
+    for(i=1; 1 < tam(A); i *= 2){ // O(nlogn)
+        casiSort(A, i, tam(A))
+    }
+    return recursiveAux(A, 1, tam(A)) // O(n)
+}
+recursiveAux(A, inicio, fin){
+    if(inicio + 1 = fin){
+        return [A[inicio]]
+    } else {
+        med = (inicio + fin)/2
+        der = recursiveAux(A, med, fin)
+        return customMerge(A, inicio, med, der) //se entiende
+    }
+}
+
+3. me encantaria saber (algo me dice que no)
+
+Ejercicio 16
+Se tiene un arreglo A de n n´umeros naturales. Sea m := m´ax{A[i] : 1 ≤ i ≤ n} el m´aximo del arreglo. Se
+desea dar un algoritmo que ordene el arreglo en O(n log m), utilizando ´unicamente arreglos y variables ordinarias
+(i.e., sin utilizar listas enlazadas, ´arboles u otras estructuras con punteros).
+a) Implementar la funci´on
+raroSort(in A: arreglo(nat)) → bool
+que resuelve el problema planteado. La funci´on debe ser de tiempo O(n log m), d´onde n = tam(A) y
+m = m´ax{A[i] : 1 ≤ i ≤ n}.
+b) Calcular y justificar la complejidad del algoritmo propuesto.
+c) Hay al menos 3 formas de resolver este ejercicio, pensar las que se puedan, discutir luego con los compa˜neros
+las que encontraron ellos y si hace falta, consultar.
+
+una solucion: el amigo radix sort
+otra solucion: ? el profe dijo hacer un trie con los digitos pero no se puede usar un trie
+pero si creo que puedo hacer un trie trucho usando solo arreglos y tuplas (creo)
