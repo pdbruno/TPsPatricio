@@ -1,0 +1,86 @@
+Ejercicio 1
+a)  ¿Cual forma de almacenamiento utilizan los procesadoresx86-64: Little-endiano  Big-endian?  
+¿Que  ventajas  aporta  una  arquitectura  Big-endian  frente  a  unaLittle-endian? ¿Y al rev ́es?
+b)  Definir el concepto de “visible al programador”. 
+¿Cu ́ales son los registros de la arquitecturax86-64 visibles para el programador? 
+¿Que tama ̃no tienen? Indiquepara cada uno si tienen alguna funci ́on espec ́ıfica.
+c)  ¿En que registro se almacenan losflagsdel procesador en la arquitectura
+
+Para pensar:¿En que contextos vale la pena extender la cantidad de registros ocultos o lasfuncionalidades de cada uno? 
+¿Que condiciones es capaz de verificar el procesador a trav ́esde los flags? ¿Hay alg ́un escenario en el que har ́ıa falta extenderlas?
+
+a) Little-endian. Ventaja de big-endian: es mas intuitivo para el programador. Ventaja de little-endian: simplifica los circuitos y la transmicion del numero
+La razon por la que Intel adoptó Little Endian, obedece a que el procesador 8086 (y sus sucesores por cuestion de compatibilidad), administra la memoria de a bytes.
+Esto significa que cada direccion de memoria tiene una capacidad de almacenamiento de 8 bits.
+Por lo tanto, y debido a esta decision de diseño, es que un bus de datos de 16 bits primero, 32 mas tarde, y 64 actualmente, 
+se conecta a bancos de memoria RAM Dinamica organizados en bytes.
+Por lo tanto, cuando el procesador lee un dato de 64 bits a traves ́del bus de datos, cada byte de las direcciones de memoria que se 
+leen viaja por un byte del bus de datos, de acuerdo al ordenamiento que la informacion tiene en la memoria, de la manera en que se muestra en el proximo slide.
+b) The 64-bit versions of the 'original' x86 registers are named:
+
+    Accumulator register (AX). Used in arithmetic operations
+    Counter register (CX). Used in shift/rotate instructions and loops.
+    Data register (DX). Used in arithmetic operations and I/O operations.
+    Base register (BX). Used as a pointer to data (located in segment register DS, when in segmented mode).
+    Stack Pointer register (SP). Pointer to the top of the stack.
+    Stack Base Pointer register (BP). Used to point to the base of the stack.
+    Source Index register (SI). Used as a pointer to a source in stream operations.
+    Destination Index register (DI). Used as a pointer to a destination in stream operations.
+
+The registers added for 64-bit mode are named:
+
+    r8 - register 8
+    r9 - register 9
+    r10 - register 10
+    r11 - register 11
+    r12 - register 12
+    r13 - register 13
+    r14 - register 14
+    r15 - register 15
+
+These may be accessed as:
+
+    64-bit registers using the 'r' prefix: rax, r15
+    32-bit registers using the 'e' prefix (original registers: e_x) or 'd' suffix (added registers: r__d): eax, r15d
+    16-bit registers using no prefix (original registers: _x) or a 'w' suffix (added registers: r__w): ax, r15w
+    8-bit registers using 'h' ("high byte" of 16 bits) suffix (original registers - bits 8-15: _h): ah, bh
+    8-bit registers using 'l' ("low byte" of 16 bits) suffix (original registers - bits 0-7: _l) or 'b' suffix (added registers: r__b): al, bl, r15b
+
+Usage during syscall/function call:
+
+    First six arguments are in rdi, rsi, rdx, rcx, r8d, r9d; remaining arguments are on the stack.
+    For syscalls, the syscall number is in rax.
+    Return value is in rax.
+    The called routine is expected to preserve rsp,rbp, rbx, r12, r13, r14, and r15 but may trample any other registers.
+
+    Tambien estan los MMalgo y los XMMalgo, el instructino pointer, los flags y los de segmento
+
+c) RFLAGS
+
+2)
+Determine  si  son  correctas  las  siguientes  instrucciones.  En  caso  afirmativo,  indicar  qu ́emodo de direccionamiento se est ́a utilizando y la acci ́on que realiza. 
+En caso negativo, justi-ficar:
+a)MOV RAX, 4 -> inmediato
+b)MOV 4, RAX -> jaja que flasheas bro
+c)MOV RAX, RBX -> registro
+d)MOV RAX, EBX -> invalido, tienen que ser del mismo tamaño
+e)MOV RAX, RBX+2 -> creo que no se puede, sumar asi es solo para indices
+f)MOV RAX, [variable] -> desplazamiento
+g)MOV [RAX], 4 -> el destino es base y la fuente es inmediato, no se cual seria la respuesta final
+h)MOV [RAX], EAX -> el destino es base y la fuente es registro, no se cual seria la respuesta final
+i)MOV [EAX], EAX idem
+j)MOV [RAX],[RCX] -> base i guess
+k)MOV [variable], RAX -> el destino es desplazamiento y la fuente es registro, no se cual seria la respuesta final
+l)MOV 4, [RAX] -> jaja que flasheas bro
+m)MOV [variable1], [variable2] -> desplazamiento
+n)MOV BYTE [RAX], 4 no sepo
+n)MOV DWORD [RAX], 4 no sepo
+o)MOV RBX, [RAX+2] -> base + desplazamiento
+p)MOV RBX, [RAX+RCX] -> base + indice + desplazamiento
+q)MOV RBX, [RAX+RCX*2+3] -> base + indice * escala + desplazamiento
+r)MOV RBX, [RAX+RCX*3+2] -> no valido
+s)MOV RBX, [[RAX]] -> no valido
+t)MOV RBX, [RAX]+2 -> no valido
+
+Opcional:Dar una posible correcci ́on de las instrucciones incorrectas en base a c ́omo fueroninterpretadas. 
+Notar la importancia de definir reglas de sem ́antica y sint ́actica claras en unaarquitectur
